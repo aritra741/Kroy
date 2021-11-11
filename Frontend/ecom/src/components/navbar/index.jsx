@@ -44,7 +44,9 @@ export function Navbar(props) {
   const { useTransparent } = props;
   return (
     <NavbarContainer useTransparent={useTransparent}>
+      <Link to="/">
       <BrandLogo />
+      </Link>
       <AccessibilityContainer>
         <Link to="/customer/access/signin">
           <Button size={19}> Login as buyer </Button>
