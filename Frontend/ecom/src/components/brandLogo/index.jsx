@@ -39,7 +39,7 @@ export function BrandLogo(props) {
     
     
         <LogoTitle size={textSize} >
-         MCQ App
+        Kroy 
         </LogoTitle>
       
     </BrandLogoContainer>

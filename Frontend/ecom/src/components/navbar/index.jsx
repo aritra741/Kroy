@@ -47,11 +47,11 @@ export function Navbar(props) {
       <BrandLogo />
       <AccessibilityContainer>
         <Link to="/customer/access/signin">
-          <Button size={19}> Login as teacher </Button>
+          <Button size={19}> Login as buyer </Button>
         </Link>
         <Marginer direction="horizontal" margin={6} />
         <Link to="/customer/access/signin">
-          <Button size={19}> Login as student</Button>
+          <Button size={19}> Login as seller</Button>
          
         </Link>
         <Marginer direction="horizontal" margin={6} />
