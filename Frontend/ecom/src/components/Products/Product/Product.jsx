@@ -22,11 +22,11 @@ const Product = ({product}) => {
                     </div>
                     <Typography variant="body2" color="textSecondary">{product.description}</Typography>
                     </CardContent>
-                    <CardActions disableSpacing className={classes.CardActions} >
+                    {/* <CardActions disableSpacing className={classes.CardActions} >
                         <IconButton aria-label="Add to Cart">
                             <AddShoppingCart/>
                             </IconButton>
-                        </CardActions>
+                        </CardActions> */}
             </Card>
             </div>
     )

@@ -4,6 +4,9 @@ import { BrandLogo } from "../brandLogo";
 import { Button } from "../../components/button";
 import { Link, Route, Switch } from "react-router-dom";
 import { Marginer } from "../marginer";
+import { ShoppingCart } from "@material-ui/icons";
+import { IconButton, Badge } from "@material-ui/core";
+
 const NavbarContainer = styled.div`
   width: 100%;
   height: 65px;
@@ -48,17 +51,17 @@ export function Navbar(props) {
       <BrandLogo />
       </Link>
       <AccessibilityContainer>
+        <Marginer direction="horizontal" margin={16} />
         <Link to="/customer/access/signin">
-          <Button size={19}> Login as buyer </Button>
-        </Link>
-        <Marginer direction="horizontal" margin={6} />
-        <Link to="/customer/access/signin">
-          <Button size={19}> Login as seller</Button>
+          <Button size={19}> Login </Button>
          
         </Link>
-        <Marginer direction="horizontal" margin={6} />
-        <Link to="/customer/access/signup">
-          <AnchorLink>Register</AnchorLink>
+        <Marginer direction="horizontal" margin={16} />
+        <Link to="/">
+         <IconButton aria-label="Show cart items" />
+        <Badge badgeContent={2} color="secondary">
+          <ShoppingCart />
+          </Badge>
         </Link>
       </AccessibilityContainer>
     </NavbarContainer>

@@ -34,8 +34,8 @@ const StandoutImage = styled.div`
   img {
     width: 50%;
     height: 50%;
-    margin-left: 20px;
-    margin-top: 20px;
+    margin-left: 300px;
+    margin-top: 50px;
   }
 `;
 
