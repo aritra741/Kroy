@@ -18,7 +18,6 @@ function App() {
           />
         </Switch>
       </Router> */}
-      Kroy
     </div>
   );
 }
