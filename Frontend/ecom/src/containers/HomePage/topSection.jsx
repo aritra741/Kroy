@@ -4,6 +4,7 @@ import IllusImg from "../../images/illustration.png";
 import { BrandLogo } from "../../components/brandLogo";
 import { Marginer } from "../../components/marginer";
 import { Button } from "../../components/button";
+import { Link, Route, Switch } from "react-router-dom";
 const TopSectionContainer = styled.div`
   width: 100%;
   height: 50%;
@@ -63,7 +64,9 @@ export function TopSection(props) {
             <BrandLogo logoSize ={100} textSize= {50}> </BrandLogo>
             <SloganText>Buy your items efficiently!</SloganText>
             <Marginer direction="vertical" margin = {15}/>
+            <Link to="/customer/access/signup">
             <Button>Join Now</Button>
+            </Link>
           </LogoContainer>
           <StandoutImage>
             <img src={IllusImg} alt="illus" />
