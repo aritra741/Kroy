@@ -7,8 +7,7 @@ import Products from "./components/Products/Products";
 function App() {
   return (
     <div className="App">
-      <Products />
-      {/* <Router>
+      <Router>
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route
@@ -17,7 +16,9 @@ function App() {
             component={CustomerAccessPage}
           />
         </Switch>
-      </Router> */}
+        
+      </Router>
+        
     </div>
   );
 }

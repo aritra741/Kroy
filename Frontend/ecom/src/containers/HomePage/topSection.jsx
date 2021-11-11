@@ -6,7 +6,7 @@ import { Marginer } from "../../components/marginer";
 import { Button } from "../../components/button";
 const TopSectionContainer = styled.div`
   width: 100%;
-  height: 800px;
+  height: 50%;
   background: url(${TopSectionBackgroundImg}) no-repeat;
   background-position: 0px -150px;
   background-size: cover;
@@ -14,15 +14,15 @@ const TopSectionContainer = styled.div`
 
 const BackgroundFilter = styled.div`
   width: 100%;
-  height: 100%;
-  background-color: rgba(38, 70, 83, 0.9);
+  height: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
 `;
 
 const TopSectionInnerContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 20%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -31,8 +31,8 @@ const StandoutImage = styled.div`
   width: 25em;
   height: 20em;
   img {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
     margin-left: 20px;
     margin-top: 20px;
   }
@@ -61,7 +61,7 @@ export function TopSection(props) {
         <TopSectionInnerContainer>
           <LogoContainer>
             <BrandLogo logoSize ={100} textSize= {50}> </BrandLogo>
-            <SloganText>Create and Find your exams!</SloganText>
+            <SloganText>Buy your items efficiently!</SloganText>
             <Marginer direction="vertical" margin = {15}/>
             <Button>Join Now</Button>
           </LogoContainer>
