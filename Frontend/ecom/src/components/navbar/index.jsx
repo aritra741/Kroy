@@ -60,7 +60,7 @@ export function Navbar(props) {
         <Link to="/">
          <IconButton aria-label="Show cart items" />
         <Badge badgeContent={2} color="secondary">
-          <ShoppingCart />
+          <ShoppingCart/>
           </Badge>
         </Link>
       </AccessibilityContainer>
