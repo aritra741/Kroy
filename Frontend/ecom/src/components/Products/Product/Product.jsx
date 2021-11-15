@@ -4,7 +4,7 @@ import {AddShoppingCart, CallMissedSharp} from '@material-ui/icons'
 
 import useStyles from './styles'
 
-const Product = ({product}) => {
+const Product = ({product, toggle}) => {
     const classes= useStyles();
 
     return (
@@ -22,11 +22,11 @@ const Product = ({product}) => {
                     </div>
                     <Typography variant="body2" color="textSecondary">{product.description}</Typography>
                     </CardContent>
-                    {/* <CardActions disableSpacing className={classes.CardActions} >
-                        <IconButton aria-label="Add to Cart">
+                    <CardActions disableSpacing className={classes.CardActions} >
+                        <IconButton aria-label="Open product details" onClick={toggle}>
                             <AddShoppingCart/>
                             </IconButton>
-                        </CardActions> */}
+                        </CardActions>
             </Card>
             </div>
     )
