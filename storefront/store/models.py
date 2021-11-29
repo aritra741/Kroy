@@ -1,9 +1,20 @@
 from django.db import models
-from django.db.models.deletion import PROTECT
+from django.db.models.deletion import CASCADE, PROTECT
 
 
 class Collection(models.Model):
     title= models.CharField(max_length=255)
+
+    def __str__(self) -> str:
+        return self.title
+
+class Customer(models.Model):
+    first_name= models.CharField(max_length=255)
+    last_name= models.CharField(max_length=255)
+    email= models.EmailField(unique=True)
+    phone= models.CharField(max_length=255)
+    bought= models.IntegerField()
+    sold= models.IntegerField()
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
@@ -13,14 +24,7 @@ class Product(models.Model):
     active= models.BooleanField(default=True)
     quantity= models.IntegerField()
     collection= models.ForeignKey(Collection, on_delete=PROTECT) # The product won't be deleted even if we accidentally delete a collection
-
-class Customer(models.Model):
-    first_name= models.CharField(max_length=255)
-    last_name= models.CharField(max_length=255)
-    email= models.EmailField(unique=True)
-    phone= models.CharField(max_length=255)
-    bought= models.IntegerField()
-    sold= models.IntegerField()
+    customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True)
 
 class Order(models.Model):
     
