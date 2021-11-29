@@ -1,0 +1,10 @@
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (1, 'Random stuff', 542, false, 5, 2, 4, '2021-05-12 01:02:52');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (2, 'Helmeted guinea fowl', 664, false, 6, 1, 3, '2021-05-14 01:02:52');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (3, 'Phalarope, red-necked', 692, true, 7, 3, 2, '2021-04-30 01:37:48');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (4, 'Gray duiker', 97, true, 2, 3, 5, '2021-08-26 04:43:09');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (5, 'Nile crocodile', 55, true, 3, 3, 5, '2021-11-20 05:59:10');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (6, 'Weaver, lesser masked', 609, false, 2, 1, 4, '2021-06-10 11:59:53');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (7, 'Deer, barasingha', 416, true, 8, 2, 3, '2020-11-28 13:48:55');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (8, 'Buttermilk snake', 913, false, 7, 4, 3, '2021-09-21 22:29:04');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (9, 'Grey phalarope', 780, true, 6, 1, 2, '2021-12-18 08:03:02');
+insert into store_product (id, title, budget, active, quantity, collection_id, customer_id, last_update) values (10, 'Tern, arctic', 687, false, 4, 2, 3, '2021-01-28 04:51:51');
