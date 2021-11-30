@@ -6,8 +6,10 @@ from store.models import Product, Collection
 class CollectionSerializer(serializers.Serializer):
 
     class Meta:
-        model= Product
-        fields= ['id', 'title', 'budget', 'collection']
+        model= Collection
+        fields= ['id', 'title', 'products_count']
+
+    products_count= serializers.IntegerField()
 
     # id= serializers.IntegerField()
     # title= serializers.CharField(max_length=255)
@@ -16,7 +18,7 @@ class ProductSerializer(serializers.ModelSerializer):
     
     class Meta:
         model= Product
-        fields= ['id', 'title', 'budget', 'collection']
+        fields= ['id', 'title', 'description', 'budget', 'quantity', 'collection', 'customer']
     
     # id= serializers.IntegerField()
     # title= serializers.CharField(max_length= 255)

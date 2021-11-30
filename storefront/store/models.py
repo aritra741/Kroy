@@ -18,12 +18,12 @@ class Customer(models.Model):
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
-    description= models.TextField
+    description= models.TextField(null=True)
     budget= models.DecimalField(max_digits=8,decimal_places=2)
     last_update= models.DateTimeField(auto_now=True)
     active= models.BooleanField(default=True)
     quantity= models.IntegerField()
-    collection= models.ForeignKey(Collection, on_delete=PROTECT) # The product won't be deleted even if we accidentally delete a collection
+    collection= models.ForeignKey(Collection, on_delete=PROTECT, related_name='products') # The product won't be deleted even if we accidentally delete a collection
     customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True)
 
 class Order(models.Model):
@@ -43,7 +43,7 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     order= models.ForeignKey(Order, on_delete=models.PROTECT)
-    product= models.ForeignKey(Product, on_delete=models.PROTECT)
+    product= models.ForeignKey(Product, on_delete=models.PROTECT, related_name='orderitems')
     quantity= models.PositiveSmallIntegerField()
     unit_price= models.DecimalField(max_digits=8,decimal_places=2)
 
