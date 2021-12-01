@@ -1,6 +1,9 @@
+import React, {useState, useEffect} from "react";
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import axios from 'axios'
+import {useParams} from 'react-router-dom'
 
 const Container = styled.div``;
 
@@ -110,19 +113,36 @@ const Button = styled.button`
   }
 `;
 
-const SingleProduct = ({item}) => {
+function SingleProduct(){
+
+  const {id}= useParams()
+  const [product, setproduct] = useState([])
+
+  useEffect(() => {
+
+      console.log("item ")
+      console.log(id)
+      
+      async function fetchProduct(){
+          const {data}= await axios.get(`http://127.0.0.1:8000/store/products/${id}`)
+          setproduct(data)
+      }
+
+      fetchProduct()
+  }, [])
+
   return (
     <Container>
       <Wrapper>
         <ImgContainer>
-          <Image src={item.image} />
+          <Image src={product.image} />
         </ImgContainer>
         <InfoContainer>
-          <Title>{item.name}</Title>
+          <Title>{product.title}</Title>
           <Desc>
-            {item.details}
+            {product.description}
           </Desc>
-          <Price>{item.price}</Price>
+          <Price>{product.budget}</Price>
           <div></div>
           <Price>
             <Button>BID FOR THIS ITEM</Button>
