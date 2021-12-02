@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { mobile } from "../responsive";
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
-
+import BidPopUp from "../../accountBox/BidPopUp";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -113,10 +113,63 @@ const Button = styled.button`
   }
 `;
 
+const styles = (theme) => ({
+  root: {
+    minWidth: 120,
+    maxheight: 5,
+    marginTop: "20px",
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
+  },
+  title: {
+    fontSize: 14,
+  },
+  listItem: {
+    marginTop: "8px",
+    float: "left",
+  },
+  img: {
+    marginTop: "2px",
+    height: "40px",
+    width: "40px",
+    float: "left",
+  },
+  heading: {
+    marginTop: "8px",
+    float: "left",
+    fontSize: "15px"
+  },
+  collapse:{
+    marginTop: "10px",
+    float: "right",
+  },
+  spaceTitle: {
+    overflow: "hidden",
+  },
+  plusSign: {
+    float: "right",
+  },
+  itemRow: {
+    overflow: "hidden",
+  },
+  addButton: {
+    backgroundColor: "#3174AD",
+    color: "white",
+    marginLeft: "18px",
+    fontSize: "12px",
+  },
+  mainTitle :{
+    marginLeft: "20px"
+  }
+});
 function SingleProduct(){
 
   const {id}= useParams()
   const [product, setproduct] = useState([])
+  const [BidPopUpOpen, setBidPopUpOpen] = useState(false)
 
   useEffect(() => {
 
@@ -145,10 +198,24 @@ function SingleProduct(){
           <Price>{product.budget}</Price>
           <div></div>
           <Price>
-            <Button>BID FOR THIS ITEM</Button>
+          <Button
+              
+              onClick={() => {
+               setBidPopUpOpen(true);
+               console.log("clicked");
+               console.log(BidPopUpOpen);
+              }}
+            >
+              Bid for this item
+            </Button>
           </Price>
         </InfoContainer>
       </Wrapper>
+
+      <BidPopUp
+          open={BidPopUpOpen}
+        
+        />
     </Container>
   );
 };
