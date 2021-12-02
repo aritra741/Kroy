@@ -28,6 +28,14 @@ class Product(models.Model):
     collection= models.ForeignKey(Collection, on_delete=PROTECT, related_name='products') # The product won't be deleted even if we accidentally delete a collection
     customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerProducts')
 
+class Bid(models.Model):
+    description= models.TextField(null=True)
+    price= models.DecimalField(max_digits=8,decimal_places=2)
+    quantity= models.IntegerField()
+    customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerBids')
+    product= models.ForeignKey(Product, on_delete=CASCADE, null=True, related_name='productBids')
+    
+
 class Order(models.Model):
     
     PAYMENT_STATUS_PENDING= 'P'

@@ -8,10 +8,10 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.serializers import Serializer
-from .models import Collection, Customer, Product
+from .models import Collection, Customer, Product, Bid
 from django.contrib.auth.decorators import login_required
 from django.db.models.aggregates import Count, Max, Min
-from .serializers import CollectionSerializer, ProductSerializer, UserSerializer, UserSerializerWithToken, CustomerSerializer
+from .serializers import CollectionSerializer, ProductSerializer, UserSerializer, UserSerializerWithToken, CustomerSerializer, BidSerializer
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -72,6 +72,57 @@ def customer_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def customer_detail(request, id):
+    customer= get_object_or_404(Customer, pk=id)
+    if request.method=='GET':
+        serializer= CustomerSerializer(customer)
+        return Response(serializer.data)
+    elif request.method=='PUT':
+        serializer= CustomerSerializer(customer,data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method=='DELETE':
+        customer.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def bid_list(request):
+    if request.method=='GET':
+        queryset= Bid.objects.select_related('product').all()
+        serializer= BidSerializer(queryset, many=True)
+        return Response(serializer.data)
+    elif request.method=='POST':
+        serializer= BidSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def bid_list_for_product(request, id):
+    product= get_object_or_404(Product, id=id)
+    serializer= BidSerializer(product.productBids, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def bid_detail(request, id):
+    bid= get_object_or_404(Bid, pk=id)
+    if request.method=='GET':
+        serializer= BidSerializer(bid)
+        return Response(serializer.data)
+    elif request.method=='PUT':
+        serializer= BidSerializer(bid,data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method=='DELETE':
+        bid.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def customer_detail(request, id):
