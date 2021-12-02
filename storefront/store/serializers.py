@@ -1,9 +1,43 @@
 import collections
+from os import name
+from django.db.models import fields
 from rest_framework import serializers
 from decimal import Decimal
-from store.models import Product, Collection
+from django.contrib.auth.models import User
+from store.models import Product, Collection, Customer
+from rest_framework_simplejwt.tokens import RefreshToken, Token
 
-class CollectionSerializer(serializers.Serializer):
+class UserSerializer(serializers.ModelSerializer):
+
+    name= serializers.SerializerMethodField(read_only= True)
+    isAdmin= serializers.SerializerMethodField(read_only= True)
+
+    class Meta:
+        model= User
+        fields= ['id', 'username', 'email', 'name', 'isAdmin']
+
+    def get_name(self, obj):
+        name= obj.first_name
+
+        if name=='':
+            name= obj.email
+
+        return name
+
+    def get_isAdmin(self, obj):
+        return obj.is_staff
+
+class UserSerializerWithToken(UserSerializer):
+    token= serializers.SerializerMethodField(read_only= True)
+    class Meta:
+        model= User
+        fields= ['id', 'username', 'email', 'name', 'isAdmin', 'token']
+
+    def get_token(self,obj):
+        token= RefreshToken.for_user(obj)
+        return str(token.access_token)
+
+class CollectionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model= Collection
@@ -14,6 +48,13 @@ class CollectionSerializer(serializers.Serializer):
     # id= serializers.IntegerField()
     # title= serializers.CharField(max_length=255)
 
+
+class CustomerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model= Customer
+        fields= '__all__'
+        
 class ProductSerializer(serializers.ModelSerializer):
     
     class Meta:

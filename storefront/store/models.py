@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE, PROTECT
 
 
@@ -9,6 +10,7 @@ class Collection(models.Model):
         return self.title
 
 class Customer(models.Model):
+    user= models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     first_name= models.CharField(max_length=255)
     last_name= models.CharField(max_length=255)
     email= models.EmailField(unique=True)
@@ -24,7 +26,7 @@ class Product(models.Model):
     active= models.BooleanField(default=True)
     quantity= models.IntegerField()
     collection= models.ForeignKey(Collection, on_delete=PROTECT, related_name='products') # The product won't be deleted even if we accidentally delete a collection
-    customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True)
+    customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerProducts')
 
 class Order(models.Model):
     
