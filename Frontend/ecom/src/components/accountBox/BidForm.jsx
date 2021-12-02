@@ -16,10 +16,12 @@ import { AccountContext } from "./context";
   return (
     <BoxContainer>
       <FormContainer>
-        <Input placeholder="Email" />
-        <Input type="password" placeholder="Password" />
+        <Input placeholder="Description" />
+        <Input placeholder="Price" />
+        <Input placeholder="Quantity" />
+        <Input placeholder="Upload Image" />
+        
       </FormContainer>
-      <MutedLink href="#">Forgot Password?</MutedLink>
       <Marginer direction="vertical" margin="1em" />
       <SubmitButton>Submit</SubmitButton>
       <Marginer direction="vertical" margin="1em" />

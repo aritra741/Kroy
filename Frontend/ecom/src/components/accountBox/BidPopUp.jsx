@@ -8,7 +8,7 @@ import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
 const styles = (theme) => ({
  paper: {
-    width:400
+  "borderRadius": 30
   },
 });
 
@@ -54,20 +54,7 @@ class BidPopUp extends React.Component {
           <DialogContent>
             <BidStyle ref={this.formRef} onSubmit={this.onSubmit.bind(this)} />
           </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={this.handleClose.bind(this, "cancel")}
-              color="secondary"
-            >
-              Cancel
-            </Button>
-            <Button
-              onClick={this.handleClose.bind(this, "done")}
-              color="secondary"
-            >
-              Done
-            </Button>
-          </DialogActions>
+         
         </Dialog>
       </div>
     );

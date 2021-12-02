@@ -8,7 +8,7 @@ import { MutedLink } from "./common";
 
 const BoxContainer = styled.div`
   width: 280px;
-  min-height: 550px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   border-radius: 19px;
@@ -20,7 +20,7 @@ const BoxContainer = styled.div`
 
 const TopContainer = styled.div`
   width: 100%;
-  height: 255px;
+  height: 125px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -32,10 +32,10 @@ const TopContainer = styled.div`
 const BackDrop = styled(motion.div)`
   position: absolute;
   width: 160%;
-  height: 550px;
+  height: 150px;
   border-radius: 50%;
   transform: rotate(60deg);
-  top: -290px;
+  top: -420px;
   left: -70px;
   background: #8360c3; /* fallback for old browsers */
   background: -webkit-linear-gradient(
@@ -71,7 +71,7 @@ const SmallText = styled.h5`
   color: #fff;
   z-index: 10;
   margin: 0;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.24;
 `;
 
