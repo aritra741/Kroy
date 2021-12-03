@@ -25,7 +25,6 @@ import "./assets/scss/style.scss";
 const App = () => {
   return (
     <div className="App">
-      <CommonProvider>
         <ProductsProvider>
           <CartProvider>
             <CheckoutProvider>
@@ -35,7 +34,7 @@ const App = () => {
                     path="/"
                     exact
                     component={HomePage}
-                    layout={CommonLayout}
+                   // layout={CommonLayout}
                   />
                   <Route
                     path="/checkout"
@@ -47,15 +46,19 @@ const App = () => {
                     component={AuthPage}
                     layout={AuthLayout}
                   />
+                  <Route path="/products/:id" component={SingleProduct} />
+                  <Route
+                    path="/customer/access/:action"
+                    exact
+                    component={CustomerAccessPage}
+                  />
                 </Switch>
               </Router>
             </CheckoutProvider>
           </CartProvider>
         </ProductsProvider>
-      </CommonProvider>
-        
     </div>
   );
-}
+};
 
 export default App;
