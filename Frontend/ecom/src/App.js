@@ -11,42 +11,48 @@ import SingleProduct from "./components/Products/Product/SingleProduct";
 //import CheckoutPage from "../src/pages/checkout";
 import React from "react";
 //import { BrowserRouter as Router, Switch } from "react-router-dom";
-import AuthProvider from "./contexts/auth";
 import CommonProvider from "./contexts/common";
 import ProductsProvider from "./contexts/products";
 import CartProvider from "./contexts/cart";
 import CheckoutProvider from "./contexts/checkout";
-import RouteWrapper from "./layouts/RouteWrapper";
 import AuthLayout from "./layouts/AuthLayout";
 import CommonLayout from "./layouts/CommonLayout";
 import AuthPage from "./pages/auth";
 //import HomePage from "../pages/home";
 import CheckoutPage from "./pages/checkout";
-function App() {
+import "./assets/scss/style.scss";
+
+const App = () => {
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/products/:id" component={SingleProduct} />
-          <Route
-            path="/customer/access/:action"
-            exact
-            component={CustomerAccessPage}
-          />
-          <RouteWrapper
+      <CommonProvider>
+        <ProductsProvider>
+          <CartProvider>
+            <CheckoutProvider>
+              <Router>
+                <Switch>
+                  <Route
+                    path="/"
+                    exact
+                    component={HomePage}
+                    layout={CommonLayout}
+                  />
+                  <Route
                     path="/checkout"
                     component={CheckoutPage}
                     layout={CommonLayout}
                   />
-           {/* <Route
-            path="/customer/checkout"
-            exact
-            component={CheckOutPage}
-          /> */}
-        </Switch>
-        
-      </Router>
+                  <Route
+                    path="/auth"
+                    component={AuthPage}
+                    layout={AuthLayout}
+                  />
+                </Switch>
+              </Router>
+            </CheckoutProvider>
+          </CartProvider>
+        </ProductsProvider>
+      </CommonProvider>
         
     </div>
   );

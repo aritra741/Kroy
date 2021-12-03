@@ -32,7 +32,7 @@ const AddressSchema = Yup.object().shape({
 
 const LoginStep = () => {
   const history = useHistory();
-  const { user, isLoggedIn } = useContext(AuthStateContext);
+  // const { user, isLoggedIn } = useContext(AuthStateContext);
   const authDispatch = useContext(AuthDispatchContext);
   const checkoutDispatch = useContext(CheckoutDispatchContext);
   const handleContinueShopping = () => {
@@ -52,27 +52,22 @@ const LoginStep = () => {
     <div className="detail-container">
       <h2>Sign In now!</h2>
       <div className="auth-message">
-        {isLoggedIn ? (
+        {(
           <>
             <p>
-              Logged in as <span>{user.username}</span>
+              Logged in as 
             </p>
             <button onClick={() => handleLoginAsDiffUser()}>
               Login as Different User
             </button>
           </>
-        ) : (
-          <>
-            <p>Please login to continue.</p>
-            <button onClick={() => handleGotoLogin()}>Login</button>
-          </>
-        )}
+        ) }
       </div>
       <div className="actions">
         <button className="outline" onClick={() => handleContinueShopping()}>
           <i className="rsc-icon-arrow_back" /> Continue Shopping
         </button>
-        <button disabled={!isLoggedIn} onClick={() => handleProceed()}>
+        <button onClick={() => handleProceed()}>
           Proceed
           <i className="rsc-icon-arrow_forward" />
         </button>
@@ -216,7 +211,7 @@ const PaymentStep = () => {
 
 const Checkout = () => {
   const { items = [] } = useContext(CartStateContext);
-  const { isLoggedIn } = useContext(AuthStateContext);
+  // const { isLoggedIn } = useContext(AuthStateContext);
   const { step, shippingAddress } = useContext(CheckoutStateContext);
   const checkoutDispatch = useContext(CheckoutDispatchContext);
   const totalItems = items.length;
@@ -232,7 +227,7 @@ const Checkout = () => {
           <ul className="timeline">
             <li
               className={classNames({
-                done: isLoggedIn,
+                // done: isLoggedIn,
                 active: step === CHECKOUT_STEPS.AUTH
               })}
               onClick={() => handleClickTimeline(CHECKOUT_STEPS.AUTH)}
