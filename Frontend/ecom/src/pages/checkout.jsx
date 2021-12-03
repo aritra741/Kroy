@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import classNames from "classnames";
+import { Button } from "../components/button";
 import {
   CheckoutStateContext,
   CheckoutDispatchContext,
@@ -15,8 +16,10 @@ import * as Yup from "yup";
 //import _get from "lodash.get";
 import Input from "../components/core/form-controls/Input";
 import { phoneRegExp } from "../constants/common";
+import {Navbar} from "../components/navbar"
 
-const AddressSchema = Yup.object().shape({
+const AddressSchema = Yup.object().shape(
+  {
   fullName: Yup.string().required("Full Name is required"),
   phoneNumber: Yup.string()
     .required("Phone Number is required")
@@ -30,51 +33,51 @@ const AddressSchema = Yup.object().shape({
   country: Yup.string().required("Country is required!")
 });
 
-const LoginStep = () => {
-  const history = useHistory();
-  // const { user, isLoggedIn } = useContext(AuthStateContext);
-  const authDispatch = useContext(AuthDispatchContext);
-  const checkoutDispatch = useContext(CheckoutDispatchContext);
-  const handleContinueShopping = () => {
-    history.push("/");
-  };
-  const handleLoginAsDiffUser = () => {
-    signOut(authDispatch);
-    history.push("/auth");
-  };
-  const handleGotoLogin = () => {
-    history.push("/auth");
-  };
-  const handleProceed = () => {
-    setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
-  };
-  return (
-    <div className="detail-container">
-      <h2>Sign In now!</h2>
-      <div className="auth-message">
-        {(
-          <>
-            <p>
-              Logged in as 
-            </p>
-            <button onClick={() => handleLoginAsDiffUser()}>
-              Login as Different User
-            </button>
-          </>
-        ) }
-      </div>
-      <div className="actions">
-        <button className="outline" onClick={() => handleContinueShopping()}>
-          <i className="rsc-icon-arrow_back" /> Continue Shopping
-        </button>
-        <button onClick={() => handleProceed()}>
-          Proceed
-          <i className="rsc-icon-arrow_forward" />
-        </button>
-      </div>
-    </div>
-  );
-};
+// const LoginStep = () => {
+//   const history = useHistory();
+//   // const { user, isLoggedIn } = useContext(AuthStateContext);
+//   const authDispatch = useContext(AuthDispatchContext);
+//   const checkoutDispatch = useContext(CheckoutDispatchContext);
+//   const handleContinueShopping = () => {
+//     history.push("/");
+//   };
+//   const handleLoginAsDiffUser = () => {
+//     signOut(authDispatch);
+//     history.push("/auth");
+//   };
+//   const handleGotoLogin = () => {
+//     history.push("/auth");
+//   };
+//   const handleProceed = () => {
+//     setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
+//   };
+//   return (
+//     <div className="detail-container">
+//       <h2>Sign In now!</h2>
+//       <div className="auth-message">
+//         {(
+//           <>
+//             <p>
+//               Logged in as 
+//             </p>
+//             <button onClick={() => handleLoginAsDiffUser()}>
+//               Login as Different User
+//             </button>
+//           </>
+//         ) }
+//       </div>
+//       <div className="actions">
+//         <button className="outline" onClick={() => handleContinueShopping()}>
+//           <i className="rsc-icon-arrow_back" /> Continue Shopping
+//         </button>
+//         <button onClick={() => handleProceed()}>
+//           Proceed
+//           <i className="rsc-icon-arrow_forward" />
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
 
 const AddressStep = () => {
   const checkoutDispatch = useContext(CheckoutDispatchContext);
@@ -86,6 +89,7 @@ const AddressStep = () => {
     saveShippingAddress(checkoutDispatch, addressData);
   };
   return (
+    
     <div className="detail-container">
       <h2>Shipping Address</h2>
       <Formik
@@ -160,17 +164,17 @@ const AddressStep = () => {
               />
             </div>
             <div className="actions">
-              <button
+              {/* <button
                 type="button"
                 className="outline"
                 onClick={() => handleBackToLogin()}
               >
                 <i className="rsc-icon-arrow_back" /> Login in as Different User
-              </button>
-              <button type="submit">
+              </button> */}
+              <Button>
                 Save Address
                 <i className="rsc-icon-arrow_forward" />
-              </button>
+              </Button>
             </div>
           </Form>
         )}
@@ -193,17 +197,16 @@ const PaymentStep = () => {
         <pre>{JSON.stringify(shippingAddress, null, 0)}</pre>
       </div> */}
       <div className="actions">
-        <button
-          type="button"
+        <Button
           className="outline"
           onClick={() => handleBackToAddress()}
         >
           <i className="rsc-icon-arrow_back" /> Back to Shipping Details
-        </button>
-        <button disabled={!shippingAddress} onClick={() => handlePayment()}>
+        </Button>
+        <Button disabled={!shippingAddress} onClick={() => handlePayment()}>
           Save Address
           <i className="rsc-icon-arrow_forward" />
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -221,11 +224,13 @@ const Checkout = () => {
   };
 
   return (
+    <div>
+      <Navbar />
     <div className="checkout-page">
       <div className="container">
         <div className="order-details">
           <ul className="timeline">
-            <li
+            {/* <li
               className={classNames({
                 // done: isLoggedIn,
                 active: step === CHECKOUT_STEPS.AUTH
@@ -234,7 +239,7 @@ const Checkout = () => {
             >
               <h2>Sign In</h2>
               <i className="rsc-icon-check_circle" />
-            </li>
+            </li> */}
             <li
               className={classNames({
                 done: shippingAddress !== null,
@@ -256,7 +261,6 @@ const Checkout = () => {
               <i className="rsc-icon-check_circle" />
             </li>
           </ul>
-          {step === CHECKOUT_STEPS.AUTH && <LoginStep />}
           {step === CHECKOUT_STEPS.SHIPPING && <AddressStep />}
           {step === CHECKOUT_STEPS.PAYMENT && <PaymentStep />}
         </div>
@@ -307,6 +311,7 @@ const Checkout = () => {
           </ul>
         </div>
       </div>
+    </div>
     </div>
   );
 };

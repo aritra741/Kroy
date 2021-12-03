@@ -64,7 +64,7 @@ button {
   border-radius: 2px;
   text-align: center;
   color: $white;
-  background: $primary-green;
+  background: #6C7AB6;
   border: 0;
   font-weight: 400;
   padding: 0 16px;
@@ -72,13 +72,13 @@ button {
   font-size: inherit;
   cursor: pointer;
   &:hover {
-    background: lighten($primary-green, 10%);
+    background: lighten(#6C7AB6, 10%);
   }
   &:focus {
     outline: none;
   }
   &:active {
-    background: lighten($primary-green, 15%);
+    background: lighten(#6C7AB6, 15%);
   }
   &.block {
     display: block;
