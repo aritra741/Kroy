@@ -22,6 +22,7 @@ import AuthPage from "./pages/auth";
 import CheckoutPage from "./pages/checkout";
 import Upload from "./components/Upload";
 import "./assets/scss/style.scss";
+import { MyProducts } from "./components/UserProfile/MyProducts";
 
 const App = () => {
   return (
@@ -47,6 +48,15 @@ const App = () => {
                     component={AuthPage}
                     layout={AuthLayout}
                   />
+                  <Route
+                    path="/upload"
+                    component={Upload}
+                  />
+                  <Route
+                    path="/products/customer/:id"
+                    component={MyProducts}
+                  />
+                  
                   <Route path="/products/:id" component={SingleProduct} />
                   <Route
                     path="/customer/access/:action"
