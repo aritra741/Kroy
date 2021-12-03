@@ -5,6 +5,7 @@ import { mobile } from "../responsive";
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import BidPopUp from "../../accountBox/BidPopUp";
+import MTable from "./MTable";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -210,6 +211,7 @@ function SingleProduct(){
             </Button>
           </Price>
         </InfoContainer>
+        <MTable />
       </Wrapper>
 
       <BidPopUp

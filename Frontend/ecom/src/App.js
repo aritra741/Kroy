@@ -18,6 +18,7 @@ import CheckoutProvider from "./contexts/checkout";
 import AuthLayout from "./layouts/AuthLayout";
 import CommonLayout from "./layouts/CommonLayout";
 import AuthPage from "./pages/auth";
+import MTable from "./components/Products/Product/MTable";
 //import HomePage from "../pages/home";
 import CheckoutPage from "./pages/checkout";
 import Upload from "./components/Upload";
@@ -52,6 +53,11 @@ const App = () => {
                     path="/upload"
                     component={Upload}
                   />
+                  <Route
+                    path="/table"
+                    component={MTable}
+                  />
+                  
                   <Route
                     path="/products/customer/:id"
                     component={MyProducts}
