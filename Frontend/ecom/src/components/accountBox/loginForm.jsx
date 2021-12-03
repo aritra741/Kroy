@@ -21,6 +21,8 @@ export function LoginForm(props) {
 
   async function signin()
   {
+    console.log(email)
+    console.log(password)
     try{
       const config= {
         headers: {
