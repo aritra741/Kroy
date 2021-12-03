@@ -53,6 +53,10 @@ const App = () => {
                     exact
                     component={CustomerAccessPage}
                   />
+                   <Route
+                    path="/upload"
+                    component={Upload}
+                  />
                 </Switch>
               </Router>
             </CheckoutProvider>

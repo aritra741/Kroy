@@ -5,7 +5,10 @@ import { mobile } from "../responsive";
 import axios from 'axios'
 import {useParams} from 'react-router-dom'
 import BidPopUp from "../../accountBox/BidPopUp";
+import {Button} from "../../../components/button"
+import {Navbar} from "../../../components/navbar"
 const Container = styled.div``;
+
 
 const Wrapper = styled.div`
   padding: 50px;
@@ -102,7 +105,7 @@ const Amount = styled.span`
   margin: 0px 5px;
 `;
 
-const Button = styled.button`
+const qwerty = styled.button`
   padding: 15px;
   border: 2px solid teal;
   background-color: white;
@@ -185,10 +188,12 @@ function SingleProduct(){
   }, [])
 
   return (
+      
     <Container>
+       <Navbar/>
       <Wrapper>
         <ImgContainer>
-          <Image src={product.image} />
+          <Image src={'http://127.0.0.1:8000'+product.image} />
         </ImgContainer>
         <InfoContainer>
           <Title>{product.title}</Title>
@@ -199,10 +204,9 @@ function SingleProduct(){
           <div></div>
           <Price>
           <Button
-              
               onClick={() => {
+                console.log("clicked");
                setBidPopUpOpen(true);
-               console.log("clicked");
                console.log(BidPopUpOpen);
               }}
             >
