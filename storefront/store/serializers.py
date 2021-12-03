@@ -67,7 +67,7 @@ class ProductSerializer(serializers.ModelSerializer):
     
     class Meta:
         model= Product
-        fields= ['id', 'title', 'description', 'budget', 'quantity', 'collection', 'customer']
+        fields= ['id', 'title', 'description', 'budget', 'quantity', 'collection', 'customer', 'image']
     
     # id= serializers.IntegerField()
     # title= serializers.CharField(max_length= 255)

@@ -27,6 +27,7 @@ class Product(models.Model):
     quantity= models.IntegerField()
     collection= models.ForeignKey(Collection, on_delete=PROTECT, related_name='products') # The product won't be deleted even if we accidentally delete a collection
     customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerProducts')
+    image= models.ImageField(null=True, blank= True)
 
 class Bid(models.Model):
     description= models.TextField(null=True)
@@ -49,7 +50,7 @@ class Order(models.Model):
 
     placed_at= models.DateTimeField(auto_now_add=True)
     payment_stats= models.CharField(max_length=1, choices=PAYMENT_STATUS_CHOICES, default=PAYMENT_STATUS_PENDING)
-    customer= models.ForeignKey(Customer, on_delete=models.PROTECT)
+    customer= models.ForeignKey(Customer, on_delete=models.PROTECT, related_name='orders')
 
 class OrderItem(models.Model):
     order= models.ForeignKey(Order, on_delete=models.PROTECT)

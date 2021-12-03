@@ -55,8 +55,7 @@ class CustomerAdmin(admin.ModelAdmin):
     @admin.display(ordering='orders_count')
     def orders(self, customer):
         url = (
-            reverse('admin:store_order_changelist')
-            + '?'
+            '?'
             + urlencode({
                 'customer__id': str(customer.id)
             }))
@@ -64,7 +63,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(
-            orders_count=Count('order')
+            orders_count=Count('orders')
         )
 
 

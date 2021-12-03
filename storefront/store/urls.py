@@ -22,4 +22,5 @@ urlpatterns= [
     path('bids/', view=views.bid_list),        
     path('bids/<int:id>/', view=views.bid_detail),    
     
-]
+    path('image/', view=views.image),    
+]   

@@ -20,6 +20,7 @@ import CommonLayout from "./layouts/CommonLayout";
 import AuthPage from "./pages/auth";
 //import HomePage from "../pages/home";
 import CheckoutPage from "./pages/checkout";
+import Upload from "./components/Upload";
 import "./assets/scss/style.scss";
 
 const App = () => {
@@ -46,6 +47,10 @@ const App = () => {
                     path="/auth"
                     component={AuthPage}
                     layout={AuthLayout}
+                  />
+                  <Route
+                    path="/upload"
+                    component={Upload}
                   />
                 </Switch>
               </Router>

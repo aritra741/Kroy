@@ -123,23 +123,6 @@ def bid_detail(request, id):
         bid.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
-@api_view(['GET', 'PUT', 'DELETE'])
-def customer_detail(request, id):
-    customer= get_object_or_404(Customer, pk=id)
-    if request.method=='GET':
-        serializer= CustomerSerializer(customer)
-        return Response(serializer.data)
-    elif request.method=='PUT':
-        serializer= CustomerSerializer(customer,data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
-    elif request.method=='DELETE':
-        customer.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-
-
 @api_view(['GET'])
 @permission_classes([IsAdminUser])
 def get_user_list(request):
@@ -217,3 +200,14 @@ def collection_detail(request, pk):
             return Response(status.HTTP_405_METHOD_NOT_ALLOWED)
         collection.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['POST'])
+def image(request):
+    print("entered")
+    print(request.data['image'])
+    serializer= ProductSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
