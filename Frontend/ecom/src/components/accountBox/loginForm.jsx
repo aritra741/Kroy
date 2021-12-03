@@ -56,7 +56,6 @@ export function LoginForm(props) {
         value={password}
         onChange={ (e)=>{setpassword(e.target.value)} } />
       </FormContainer>
-      <MutedLink href="#">Forgot Password?</MutedLink>
       <Marginer direction="vertical" margin="1em" />
       <SubmitButton onClick={signin}>Login</SubmitButton>
       <Marginer direction="vertical" margin={5} />
