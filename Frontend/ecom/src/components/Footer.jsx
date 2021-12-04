@@ -3,8 +3,8 @@ import React from "react";
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
-    <footer>
-      <p className="footer-links">
+    <footer className='container' >
+      {/* <p className="footer-links">
         <a
           href="https://github.com/sivadass/react-shopping-cart"
           target="_blank"
@@ -23,10 +23,12 @@ export const Footer = () => {
         <a href="https://sivadass.in" target="_blank">
           Read My Blog
         </a>
-      </p>
+      </p> */}
+      <a href="/">
       <p>
-        &copy; {currentYear} <strong>Veggy</strong> - Organic Green Store
+      <strong> &copy; {currentYear} Kroy - An efficient way to buy</strong>
       </p>
+        </a>
     </footer>
   );
 };

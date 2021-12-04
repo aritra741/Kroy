@@ -5,6 +5,7 @@ import { PageContainer } from "../pageContainer";
 import { TopSection } from "../../containers/HomePage/topSection";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { Button } from "../button";
 import SingleProduct from "../../components/Products/Product/SingleProduct"
 // import Products from "../../components/Products/Products"
 // export function HomePage(props)
@@ -74,7 +75,7 @@ export function MyProducts() {
                 <Navbar />
             <div className='container'>
                 <h1 style={{color: '#fff'}}>
-                    My Products
+                    My Products <Button>+ Add</Button>
                     </h1>
                 <div className="main_content">
                     {listItems}
