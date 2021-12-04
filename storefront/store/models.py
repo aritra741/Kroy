@@ -10,20 +10,18 @@ class Collection(models.Model):
         return self.title
 
 class Customer(models.Model):
-    user= models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user= models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     first_name= models.CharField(max_length=255)
     last_name= models.CharField(max_length=255)
     email= models.EmailField(unique=True)
     phone= models.CharField(max_length=255)
-    bought= models.IntegerField()
-    sold= models.IntegerField()
+
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
     description= models.TextField(null=True)
     budget= models.DecimalField(max_digits=8,decimal_places=2)
     last_update= models.DateTimeField(auto_now=True)
-    active= models.BooleanField(default=True)
     quantity= models.IntegerField()
     collection= models.ForeignKey(Collection, on_delete=PROTECT, related_name='products') # The product won't be deleted even if we accidentally delete a collection
     customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerProducts')

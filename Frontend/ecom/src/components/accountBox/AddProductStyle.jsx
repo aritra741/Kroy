@@ -147,12 +147,12 @@ console.log("Active:",initialActive);
     <AccountContext.Provider value={contextValue}>
       <BoxContainer>
         <TopContainer>
-          <BackDrop
+          {/* <BackDrop
             variants={backdropVariants}
             transition={expandingTransition}
             initial={false}
             animate={isExpanded ? "expanded" : "collapsed"}
-          />
+          /> */}
           {active === "signin" && (
             <>
               <HeaderContainer>
