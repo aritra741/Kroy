@@ -205,15 +205,17 @@ function SingleProduct(){
           <Price>{product.budget}</Price>
           <div></div>
           <Price>
-          { userID!=product.customer && (<Button
-              onClick={() => {
-                console.log("clicked");
-               setBidPopUpOpen(true);
-               console.log(BidPopUpOpen);
-              }}
-            >
+          { userID!=product.customer && (
+            <div onClick={() => {
+              console.log("clicked");
+             setBidPopUpOpen(true);
+             console.log(BidPopUpOpen);
+            }}>
+              <Button>
               Bid for this item
-            </Button>) }
+            </Button>
+            </div>
+          ) }
           </Price>
         </InfoContainer>
         { userID==product.customer && <MTable id={id} /> }

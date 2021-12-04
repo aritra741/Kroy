@@ -35,7 +35,7 @@ class Bid(models.Model):
     quantity= models.IntegerField()
     customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerBids')
     product= models.ForeignKey(Product, on_delete=CASCADE, null=True, related_name='productBids')
-    
+    image= models.ImageField(null=True, blank= True)
 
 class Order(models.Model):
     

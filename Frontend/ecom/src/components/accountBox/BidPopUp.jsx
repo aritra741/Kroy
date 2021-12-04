@@ -8,7 +8,7 @@ import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
 const styles = (theme) => ({
  paper: {
-  "borderRadius": 30
+  "borderRadius": 0
   },
 });
 
@@ -44,9 +44,12 @@ class BidPopUp extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div  className={classes.paper}>
+      <div  >
         <Dialog
-       
+
+          style= {{
+            "padding": "0px"
+          }}
           open={this.props.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
