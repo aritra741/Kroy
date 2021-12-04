@@ -5,7 +5,7 @@ import { LoginForm } from "./loginForm";
 import { AccountContext } from "./context";
 import { BidForm } from "./BidForm";
 import { MutedLink } from "./common";
-import AddProductForm from "./AddProductForm";
+import AddProductForm from "./addProductForm";
 
 const BoxContainer = styled.div`
   width: 280px;

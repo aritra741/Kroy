@@ -152,6 +152,8 @@ def get_product_by_customer(request, id):
     serializer= ProductSerializer(customer.customerProducts, many=True)
     return Response(serializer.data)
 
+# Add endpoint to get products for each collection
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_detail(request, id):
     product= get_object_or_404(Product, pk=id)

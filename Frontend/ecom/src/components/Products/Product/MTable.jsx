@@ -110,7 +110,7 @@ function MTable({id}) {
           ).map((bids) => (
             <TableRow >
               <TableCell>
-                    <Typography className={classes.name}>{bids.price}</Typography>
+                    <Typography >{bids.price}</Typography>
               </TableCell>
               <TableCell>
                 <Typography color="primary" variant="subtitle2">

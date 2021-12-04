@@ -15,7 +15,7 @@ app.get('/ssl-request', async (req, res, next) => {
         total_amount: 100,
         currency: 'BDT',
         tran_id: 'REF123', // use unique tran_id for each api call
-        success_url: 'http://localhost:3030/success',
+        success_url: 'http://127.0.0.1:3030/ssl-payment-success',
         fail_url: 'http://localhost:3030/fail',
         cancel_url: 'http://localhost:3030/cancel',
         ipn_url: 'http://localhost:3030/ipn',
@@ -61,9 +61,7 @@ app.get('/ssl-request', async (req, res, next) => {
 })
 
 app.post("/ssl-payment-success", async(req,res,next)=>{
-    return res.status(200).json({
-        data: req.body
-    })
+    res.redirect('http://127.0.0.1:3000/')
 })
 
 app.post("/ssl-payment-failure", async(req,res,next)=>{
@@ -79,9 +77,7 @@ app.post("/ssl-payment-cancel", async(req,res,next)=>{
 })
 
 app.post("/ssl-payment-ipn", async(req,res,next)=>{
-    return res.status(200).json({
-        data: req.body
-    })
+    res.redirect('http://127.0.0.1:3000/')
 })
 
 
