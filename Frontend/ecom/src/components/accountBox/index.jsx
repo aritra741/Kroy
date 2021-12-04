@@ -144,7 +144,7 @@ console.log("Active:",initialActive);
 
   return (
     <AccountContext.Provider value={contextValue}>
-      <BoxContainer>
+      <BoxContainer className>
         <TopContainer>
           <BackDrop
             variants={backdropVariants}
