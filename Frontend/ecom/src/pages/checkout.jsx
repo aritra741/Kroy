@@ -17,6 +17,7 @@ import * as Yup from "yup";
 import Input from "../components/core/form-controls/Input";
 import { phoneRegExp } from "../constants/common";
 import {Navbar} from "../components/navbar"
+import {Footer} from "../components/Footer"
 
 const AddressSchema = Yup.object().shape(
   {
@@ -361,6 +362,7 @@ const Checkout = () => {
         
       </div>
     </div>
+    <Footer></Footer>
     </div>
   );
 };

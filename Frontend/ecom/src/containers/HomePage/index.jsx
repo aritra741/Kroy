@@ -5,6 +5,7 @@ import { TopSection } from "./topSection";
 import {Link} from 'react-router-dom'
 import axios from 'axios'
 import SingleProduct from "../../components/Products/Product/SingleProduct"
+import { CommonStateContext } from "../../contexts/common";
 // import Products from "../../components/Products/Products"
 // export function HomePage(props)
 // {
@@ -19,7 +20,7 @@ import SingleProduct from "../../components/Products/Product/SingleProduct"
 
 import React from 'react'
 import './App.css'
-
+import {Footer} from "../../components/Footer"
 // const product_card=[
 //     {id: 1, name: "Shoes", description: "Running shoes", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donecvenenatis, dolor in finibus malesuada, lectus ipsum porta nunc, atiaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, egettristique tortor pretium ut. Curabitur elit justo, consequat idcondimentum ac, volutpat ornare.", price: "1500 taka", image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-buy-running-shoes-1611448820.jpg?crop=0.516xw:0.774xh;0.247xw,0.226xh&resize=640:*" },
 //     {id: 2, name: "Macbook", description: "Apple macbook", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donecvenenatis, dolor in finibus malesuada, lectus ipsum porta nunc, atiaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, egettristique tortor pretium ut. Curabitur elit justo, consequat idcondimentum ac, volutpat ornare.", price: "90000 taka", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-gold-select-201810?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1633027804000" },
@@ -75,14 +76,11 @@ export function HomePage() {
                 <div className="main_content">
                     {listItems}
                     </div>
-                    <div className="footer">
-            <p>copyright @2020</p>
-            <div className="social">
-                <i className="fa fa-facebook"></i>
-                <i className="fa fa-instagram"></i>
-            </div>
-        </div>
+                    <Footer>
+                    </Footer>
                     </div>
+                    
             </PageContainer>
+           
     )
 }
