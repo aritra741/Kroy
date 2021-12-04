@@ -12,7 +12,7 @@ const styles = (theme) => ({
   },
 });
 
-class addProductPopup extends React.Component {
+class AddProductPopup extends React.Component {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
@@ -63,4 +63,4 @@ class addProductPopup extends React.Component {
     );
   }
 }
-export default withStyles(styles, { withTheme: true })(memo(addProductPopup));
+export default withStyles(styles, { withTheme: true })(memo(AddProductPopup));

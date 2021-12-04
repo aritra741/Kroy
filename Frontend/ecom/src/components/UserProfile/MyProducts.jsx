@@ -18,7 +18,8 @@ import SingleProduct from "../../components/Products/Product/SingleProduct";
 //         </PageContainer>
 //         );
 // }
-import addProductPopup from "../../components/accountBox/addProductPopup";
+import BidPopUp from "../accountBox/BidPopUp";
+import AddProductPopup from "../accountBox/AddProductPopup";
 import React from "react";
 import "../../containers/HomePage/App.css";
 
@@ -89,8 +90,8 @@ export function MyProducts() {
         </h1>
         <div className="main_content">{listItems}</div>
       </div>
-      <addProductPopup
-          open={addProductPopUpOpen}
+      <AddProductPopup
+          open= {addProductPopUpOpen}
         
         />
     </PageContainer>
