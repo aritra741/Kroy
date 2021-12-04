@@ -7,6 +7,7 @@ import {useParams} from 'react-router-dom'
 import BidPopUp from "../../accountBox/BidPopUp";
 import {Button} from "../../../components/button"
 import {Navbar} from "../../../components/navbar"
+import MTable from "./MTable";
 const Container = styled.div``;
 
 
@@ -214,7 +215,7 @@ function SingleProduct(){
             </Button>
           </Price>
         </InfoContainer>
-        <MTable />
+        <MTable id={id} />
       </Wrapper>
 
       <BidPopUp

@@ -13,12 +13,24 @@ import { AccountContext } from "./context";
 import axios from "axios";
 
 export function LoginForm(props) {
+
+  const[isLoggedIn, setLoggedIn] = useState(false)
+  return (
+    <div className="App">
+      {!isLoggedIn ? (
+        <Login handleLogin={setLoggedIn} />
+      ) : (
+        <Dashboard handleLogin={setLoggedIn} />
+      )}
+    </div>
+  );
+
+}
+const Login = ({handleLogin}) => {
   const { switchToSignup } = useContext(AccountContext);
   
   const[email, setemail]= useState('')
   const[password, setpassword]= useState('')
-  
-
   async function signin()
   {
     console.log(email)
@@ -57,7 +69,7 @@ export function LoginForm(props) {
         onChange={ (e)=>{setpassword(e.target.value)} } />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
-      <SubmitButton onClick={signin}>Login</SubmitButton>
+      <SubmitButton onClick={ () => handleLogin(true)}>Login</SubmitButton>
       <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">
         Dont have an Account?
@@ -67,4 +79,19 @@ export function LoginForm(props) {
       </MutedLink>
     </BoxContainer>
   );
+
+
 }
+  
+
+
+const Dashboard = ({ handleLogin }) => {
+  return (
+    <div class="dashboard">
+      <div>Welcome you are now logged in</div>
+      <SubmitButton onClick={() => handleLogin(false)} variant="primary">
+        Log Out
+      </SubmitButton>
+    </div>
+  );
+};
