@@ -57,21 +57,21 @@
       border: 2px solid $gray-eighty;
     }
     &.done {
-      color: lighten($primary-green, 0);
+      color: lighten(#264653, 0);
       i {
-        color: lighten($primary-green, 0);
+        color: lighten(#264653, 0);
       }
       h2 {
-        color: lighten($primary-green, 0);
+        color: lighten(#264653, 0);
       }
     }
     &.active {
-      color: lighten($primary-green, 15);
+      color: lighten(#264653, 15);
       i {
-        color: lighten($primary-green, 15);
+        color: lighten(#264653, 15);
       }
       h2 {
-        color: lighten($primary-green, 15);
+        color: lighten(#264653, 15);
       }
     }
   }
@@ -107,8 +107,8 @@
     }
     button {
       background: transparent;
-      color: $primary-green;
-      border: 1px solid $primary-green;
+      color: #264653;
+      border: 1px solid #264653;
       border-radius: 8px;
     }
   }
@@ -123,8 +123,8 @@
         vertical-align: middle;
       }
       &:first-child {
-        background-color: transparent;
-        color: $primary-green;
+        // background-color: transparent;
+        color: #fff;
       }
       &:disabled {
         opacity: 0.5;

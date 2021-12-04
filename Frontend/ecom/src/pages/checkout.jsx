@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import classNames from "classnames";
 import { Button } from "../components/button";
@@ -94,13 +94,13 @@ const AddressStep = () => {
       <h2>Shipping Address</h2>
       <Formik
         initialValues={{
-          fullName: "John Doe",
-          phoneNumber: "5552229876",
-          addressLine: "L1, Palm Residency",
-          city: "Kingston",
-          state: "New York",
-          code: "12401",
-          country: "United States"
+          fullName: "",
+          phoneNumber: "",
+          addressLine: "",
+          city: "",
+          state: "",
+          code: "",
+          country: ""
         }}
         validationSchema={AddressSchema}
         onSubmit={async (values, { resetForm }) => {
@@ -132,7 +132,7 @@ const AddressStep = () => {
             <Field
               name="addressLine"
               type="text"
-              placeholder="Door No. & Street"
+              placeholder="Street and House Number"
               component={Input}
             />
             <div className="field-group">
@@ -172,7 +172,7 @@ const AddressStep = () => {
                 <i className="rsc-icon-arrow_back" /> Login in as Different User
               </button> */}
               <Button>
-                Save Address
+                Proceed to payment
                 <i className="rsc-icon-arrow_forward" />
               </Button>
             </div>
@@ -187,6 +187,7 @@ const PaymentStep = () => {
   const { shippingAddress } = useContext(CheckoutStateContext);
   const checkoutDispatch = useContext(CheckoutDispatchContext);
   const handleBackToAddress = () => {
+    console.log("ashe")
     setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
   };
   const handlePayment = () => {};
@@ -196,17 +197,104 @@ const PaymentStep = () => {
       {/* <div>
         <pre>{JSON.stringify(shippingAddress, null, 0)}</pre>
       </div> */}
+      <Formik
+        initialValues={{
+          fullName: "",
+          phoneNumber: "",
+          addressLine: "",
+          city: "",
+          state: "",
+          code: "",
+          country: ""
+        }}
+        validationSchema={AddressSchema}
+        onSubmit={async (values, { resetForm }) => {
+          try {
+            const addressData = { ...values };
+            resetForm();
+            // handleSaveAddress(addressData);
+          } catch (err) {
+            console.error(err);
+          }
+        }}
+      >
+        {() => (
+          <Form>
+            <div className="field-group">
+              <Field
+                name="fullName"
+                type="text"
+                placeholder="Full Name"
+                component={Input}
+              />
+              <Field
+                name="phoneNumber"
+                type="text"
+                placeholder="Phone Number"
+                component={Input}
+              />
+            </div>
+            <Field
+              name="addressLine"
+              type="text"
+              placeholder="Street and House Number"
+              component={Input}
+            />
+            <div className="field-group">
+              <Field
+                name="city"
+                type="text"
+                placeholder="City"
+                component={Input}
+              />
+              <Field
+                name="state"
+                type="text"
+                placeholder="State"
+                component={Input}
+              />
+            </div>
+            <div className="field-group">
+              <Field
+                name="code"
+                type="text"
+                placeholder="ZIP/Postal Code"
+                component={Input}
+              />
+              <Field
+                name="country"
+                type="text"
+                placeholder="Country"
+                component={Input}
+              />
+            </div>
+            <div className="actions">
+              {/* <button
+                type="button"
+                className="outline"
+                onClick={() => handleBackToLogin()}
+              >
+                <i className="rsc-icon-arrow_back" /> Login in as Different User
+              </button> */}
+              <Button>
+                Confirm Payment
+              </Button>
+            </div>
+          </Form>
+        )}
+      </Formik>
       <div className="actions">
-        <Button
+        <button
+        type="button"
           className="outline"
           onClick={() => handleBackToAddress()}
         >
           <i className="rsc-icon-arrow_back" /> Back to Shipping Details
-        </Button>
-        <Button disabled={!shippingAddress} onClick={() => handlePayment()}>
+        </button>
+        {/* <Button disabled={!shippingAddress} onClick={() => handlePayment()}>
           Save Address
           <i className="rsc-icon-arrow_forward" />
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
@@ -223,7 +311,9 @@ const Checkout = () => {
     setCheckoutStep(checkoutDispatch, nextStep);
   };
 
-  handleClickTimeline(CHECKOUT_STEPS.SHIPPING);
+  useEffect(() => {
+    handleClickTimeline(CHECKOUT_STEPS.SHIPPING);
+}, [])
 
   return (
     <div>
