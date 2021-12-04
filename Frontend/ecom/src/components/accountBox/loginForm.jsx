@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { generatePath, useNavigate } from 'react-router';
 import Axios from 'axios';
 import { Marginer } from "../marginer";
 import {
@@ -48,6 +49,9 @@ const Login = ({handleLogin}) => {
       config)
         
       console.log(data)
+      localStorage.setItem('user', data.id)
+      console.log(localStorage.getItem('user'));
+      // navigate("127.0.0.1:3000/myproducts", { replace: true });
     }
     catch(e)
     {
@@ -69,7 +73,7 @@ const Login = ({handleLogin}) => {
         onChange={ (e)=>{setpassword(e.target.value)} } />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
-      <SubmitButton onClick={ () => handleLogin(true)}>Login</SubmitButton>
+      <SubmitButton onClick={signin}>Login</SubmitButton>
       <Marginer direction="vertical" margin={5} />
       <MutedLink href="#">
         Dont have an Account?
@@ -87,7 +91,7 @@ const Login = ({handleLogin}) => {
 
 const Dashboard = ({ handleLogin }) => {
   return (
-    <div class="dashboard">
+    <div className="dashboard">
       <div>Welcome you are now logged in</div>
       <SubmitButton onClick={() => handleLogin(false)} variant="primary">
         Log Out

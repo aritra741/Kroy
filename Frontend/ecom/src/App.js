@@ -59,7 +59,7 @@ const App = () => {
                   />
                   
                   <Route
-                    path="/products/customer/:id"
+                    path="/myproducts"
                     component={MyProducts}
                   />
                   

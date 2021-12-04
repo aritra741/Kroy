@@ -36,7 +36,7 @@ import '../../containers/HomePage/App.css'
 export function MyProducts() {
 
     const [products, setproducts] = useState([])
-    const {id}= useParams()
+    const {id}= localStorage.getItem('user')
 
     useEffect(() => {
 
