@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import classNames from "classnames";
 import { Button } from "../components/button";
 import {
@@ -277,9 +277,11 @@ const PaymentStep = () => {
               >
                 <i className="rsc-icon-arrow_back" /> Login in as Different User
               </button> */}
+              <Link to="/payment">
               <Button>
                 Confirm Payment
               </Button>
+              </Link>
             </div>
           </Form>
         )}

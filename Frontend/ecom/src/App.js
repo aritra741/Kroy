@@ -62,7 +62,9 @@ const App = () => {
                     path="/myproducts"
                     component={MyProducts}
                   />
-                  
+                  <Route path="/payment"
+                  render={() => 
+                  window.location = "http://127.0.0.1:3030/ssl-request"} />
                   <Route path="/products/:id" component={SingleProduct} />
                   <Route
                     path="/customer/access/:action"
