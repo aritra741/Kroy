@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import {useParams} from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import { Navbar } from "../navbar";
 import { PageContainer } from "../pageContainer";
 import { TopSection } from "../../containers/HomePage/topSection";
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { Link } from "react-router-dom";
+import axios from "axios";
 import { Button } from "../button";
-import SingleProduct from "../../components/Products/Product/SingleProduct"
+import SingleProduct from "../../components/Products/Product/SingleProduct";
 // import Products from "../../components/Products/Products"
 // export function HomePage(props)
 // {
@@ -18,9 +18,9 @@ import SingleProduct from "../../components/Products/Product/SingleProduct"
 //         </PageContainer>
 //         );
 // }
-
-import React from 'react'
-import '../../containers/HomePage/App.css'
+import addProductPopup from "../../components/accountBox/addProductPopup";
+import React from "react";
+import "../../containers/HomePage/App.css";
 
 // const product_card=[
 //     {id: 1, name: "Shoes", description: "Running shoes", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donecvenenatis, dolor in finibus malesuada, lectus ipsum porta nunc, atiaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, egettristique tortor pretium ut. Curabitur elit justo, consequat idcondimentum ac, volutpat ornare.", price: "1500 taka", image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-buy-running-shoes-1611448820.jpg?crop=0.516xw:0.774xh;0.247xw,0.226xh&resize=640:*" },
@@ -33,54 +33,66 @@ import '../../containers/HomePage/App.css'
 //     {id: 8, name: "Headphones", description: "Over-ear headphones", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donecvenenatis, dolor in finibus malesuada, lectus ipsum porta nunc, atiaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, egettristique tortor pretium ut. Curabitur elit justo, consequat idcondimentum ac, volutpat ornare.", price: "2500 taka", image: "data:image/jpeg;base64,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LaQqG4YikaRxwdMR9Wt5EnG7SA3bo61UGqdKGGxnks+ocMfXIwa0/daMB8zvK2lEQEREBERAREQEREBERBDRdnH4G+QUyhouzj8DfIKZAREQEREBERAREQEREHxwDhY4g53XOvSlqM7VifrYGn0SZx2LfmnnExnlmW8rjdc9Fry6U0dFpaJ8MzQ6OQWcD+BB3EGxB3EBByMIXcF8LCugm9EtIPz8/wD6v9C9lB0XaPpXte9r5i3ENmLSy/xMa1od3G4QUxqlqZX6wtJp4wIxlJKSyPuYbHatxaDbLBXXqHqDFqqOse7ralwsX2s1oObYgcubjieQwW4saGAAAAAWAGQAyAC+oNR171Eh1rAeD1VS0WZIBcEDJso+0MTY5i/eDSet2pFfq83anjDojfalhJewAfpDYFt+Lhyuuml8I2sDkc0HHRa4ZfS3dhy38dyk6l28Lo/SfRjo6ukMjWPhc73upcAz5RuDmty+yAvC7ompD+fn+fVf6EFX9GmpDta59qUEUkJBmP33ZiJp577ZDgXAro+NgjAa0AAAAACwAGQA3BeTQ+i4tDQshhbssYMOJOZc47yTc3XtQEREBERAREQEREBERAREQQ0XZx+BvkFMoaLs4/A3yCmQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERB//Z" },
 //     ]
 
-
 export function MyProducts() {
+  const [products, setproducts] = useState([]);
+  const [addProductPopUpOpen, setaddProductPopUpOpen] = useState(false);
+  const id = localStorage.getItem("user");
+  console.log(localStorage.getItem("user"));
 
-    const [products, setproducts] = useState([])
-    const id= localStorage.getItem('user')
-    console.log(localStorage.getItem('user'))
+  useEffect(() => {
+    async function fetchProducts() {
+      const { data } = await axios.get(
+        `http://127.0.0.1:8000/store/products/customer/${id}`
+      );
+      setproducts(data);
+      console.log(data);
+    }
 
-    useEffect(() => {
+    fetchProducts();
+  }, []);
 
-        async function fetchProducts() {
-            const { data } = await axios.get(`http://127.0.0.1:8000/store/products/customer/${id}`)
-            setproducts(data)
-            console.log(data)
-        }
-
-        fetchProducts()
-    }, [])
-
-
-    const listItems = products.map((item) =>
-        <Link to={`/products/${item.id}`} >
-            <div className="card" key={item.id}>
-
-                <div className="card_img">
-                    <img src={'http://127.0.0.1:8000' + item.image} />
-                </div>
-                <div className="card_header">
-                    <h2>{item.title}</h2>
-                    <p>{item.description}</p>
-                    <p className="price">{item.budget}<span></span></p>
-                    <div className="btn">Show Details</div>
-                </div>
+  const listItems = products.map((item) => (
+    <Link to={`/products/${item.id}`}>
+      <div className="card" key={item.id}>
+        <div className="card_img">
+          <img src={"http://127.0.0.1:8000" + item.image} />
+        </div>
+        <div className="card_header">
+          <h2>{item.title}</h2>
+          <p>{item.description}</p>
+          <p className="price">
+            {item.budget}
+            <span></span>
+          </p>
+          <div className="btn">Show Details</div>
+        </div>
+      </div>
+    </Link>
+  ));
+  return (
+    <PageContainer>
+      <Navbar />
+      <div className="container">
+        <h1 style={{ color: "#fff" }}>
+          My Products{" "}
+          {
+            <div
+              onClick={() => {
+                console.log("clicked");
+                setaddProductPopUpOpen(true);
+                console.log(addProductPopUpOpen);
+              }}
+            >
+              <Button>+ Add</Button>
             </div>
-        </Link>
-
-    );
-    return (
-
-        <PageContainer>
-                <Navbar />
-            <div className='container'>
-                <h1 style={{color: '#fff'}}>
-                    My Products <Button>+ Add</Button>
-                    </h1>
-                <div className="main_content">
-                    {listItems}
-                </div>
-            </div>
-        </PageContainer>
-    )
+          }
+        </h1>
+        <div className="main_content">{listItems}</div>
+      </div>
+      <addProductPopup
+          open={addProductPopUpOpen}
+        
+        />
+    </PageContainer>
+  );
 }
