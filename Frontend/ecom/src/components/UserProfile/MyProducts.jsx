@@ -19,7 +19,7 @@ import SingleProduct from "../../components/Products/Product/SingleProduct";
 //         );
 // }
 import BidPopUp from "../accountBox/BidPopUp";
-import AddProductPopup from "../accountBox/AddProductPopup";
+import AddProductPopup from "../accountBox/AddProductPopup"
 import React from "react";
 import "../../containers/HomePage/App.css";
 

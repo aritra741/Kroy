@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import  BidStyle from "./BidStyle";
+import  AddProductStyle from "./AddProductStyle";
 import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
 const styles = (theme) => ({
@@ -55,7 +55,7 @@ class AddProductPopup extends React.Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <BidStyle ref={this.formRef} onSubmit={this.onSubmit.bind(this)} />
+            <AddProductStyle ref={this.formRef} onSubmit={this.onSubmit.bind(this)} />
           </DialogContent>
          
         </Dialog>
