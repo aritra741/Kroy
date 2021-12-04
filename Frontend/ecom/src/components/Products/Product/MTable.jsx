@@ -32,13 +32,13 @@ const useStyles = makeStyles((theme) => ({
   },
   tableHeaderCell: {
     fontWeight: "bold",
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: "#264653",
     color: theme.palette.getContrastText(theme.palette.primary.dark),
   },
 
   name: {
     fontWeight: "bold",
-    color: theme.palette.secondary.dark,
+    color: "#264653",
   },
   status: {
     fontWeight: "bold",
@@ -96,7 +96,7 @@ function MTable({id}) {
 
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
-      <Table className={classes.table} aria-label="simple table">
+      <Table >
         <TableHead>
           <TableRow>
             <TableCell className={classes.tableHeaderCell}>Price</TableCell>
@@ -135,15 +135,6 @@ function MTable({id}) {
           ))}
         </TableBody>
         <TableFooter>
-          <TablePagination
-            rowsPerPageOptions={[5, 10, 15]}
-            component="div"
-            count={USERS.length}
-            rowsPerPage={rowsPerPage}
-            page={page}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-          />
         </TableFooter>
       </Table>
     </TableContainer>

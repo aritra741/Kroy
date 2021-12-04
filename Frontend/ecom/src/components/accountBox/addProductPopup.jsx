@@ -3,9 +3,10 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import  AddProductStyle from "./AddProductStyle";
+//import  AddProductForm from "./AddProductF";
 import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
+import AddProductForm from "./AddProductForm";
 const styles = (theme) => ({
  paper: {
   "borderRadius": 0
@@ -55,7 +56,7 @@ class AddProductPopup extends React.Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <AddProductStyle ref={this.formRef} onSubmit={this.onSubmit.bind(this)} />
+            <AddProductForm />
           </DialogContent>
          
         </Dialog>
