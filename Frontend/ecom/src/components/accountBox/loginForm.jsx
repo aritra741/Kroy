@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { generatePath, useNavigate } from 'react-router';
+import { useHistory } from "react-router-dom";
 import Axios from 'axios';
 import { Marginer } from "../marginer";
 import {
@@ -29,7 +29,7 @@ export function LoginForm(props) {
 }
 const Login = ({handleLogin}) => {
   const { switchToSignup } = useContext(AccountContext);
-  
+  const history= useHistory()
   const[email, setemail]= useState('')
   const[password, setpassword]= useState('')
   async function signin()
@@ -51,7 +51,7 @@ const Login = ({handleLogin}) => {
       console.log(data)
       localStorage.setItem('user', data.id)
       console.log(localStorage.getItem('user'));
-      // navigate("127.0.0.1:3000/myproducts", { replace: true });
+      history.push("../../myproducts");
     }
     catch(e)
     {

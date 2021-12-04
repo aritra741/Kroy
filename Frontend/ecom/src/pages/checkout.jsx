@@ -306,6 +306,8 @@ const Checkout = () => {
   const { step, shippingAddress } = useContext(CheckoutStateContext);
   const checkoutDispatch = useContext(CheckoutDispatchContext);
   const totalItems = items.length;
+  const bidID= localStorage.getItem('bid')
+  console.log(bidID)
 
   const handleClickTimeline = (nextStep) => {
     setCheckoutStep(checkoutDispatch, nextStep);

@@ -172,6 +172,7 @@ const styles = (theme) => ({
 function SingleProduct(){
 
   const {id}= useParams()
+  const userID= localStorage.getItem('user')
   const [product, setproduct] = useState([])
   const [BidPopUpOpen, setBidPopUpOpen] = useState(false)
 
@@ -204,7 +205,7 @@ function SingleProduct(){
           <Price>{product.budget}</Price>
           <div></div>
           <Price>
-          <Button
+          { userID!=product.customer && (<Button
               onClick={() => {
                 console.log("clicked");
                setBidPopUpOpen(true);
@@ -212,10 +213,10 @@ function SingleProduct(){
               }}
             >
               Bid for this item
-            </Button>
+            </Button>) }
           </Price>
         </InfoContainer>
-        <MTable id={id} />
+        { userID==product.customer && <MTable id={id} /> }
       </Wrapper>
 
       <BidPopUp

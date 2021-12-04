@@ -14,10 +14,12 @@ import {
   Typography,
   TablePagination,
   TableFooter,
+  Link,
 } from "@material-ui/core";
 import axios from 'axios';
 import { useState, useEffect } from "react";
 import {useParams} from 'react-router-dom'
+import { useHistory } from "react-router-dom";
 import { Button } from "../../button";
 const useStyles = makeStyles((theme) => ({
   table: {
@@ -90,6 +92,8 @@ function MTable({id}) {
     setPage(0);
   };
 
+  const history= useHistory()
+
   return (
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table className={classes.table} aria-label="simple table">
@@ -116,9 +120,16 @@ function MTable({id}) {
               </TableCell>
               <TableCell>{bids.image}</TableCell>
               <TableCell>
+  
+                 <div onClick={()=>{
+                   history.push("../checkout");
+                   localStorage.setItem('bid', bids.id)
+                   }}>
                  <Button>
                    Buy
                  </Button>
+                   </div>
+
               </TableCell>
             </TableRow>
           ))}

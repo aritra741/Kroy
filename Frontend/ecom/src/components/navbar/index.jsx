@@ -52,17 +52,18 @@ export function Navbar(props) {
       </Link>
       <AccessibilityContainer>
         <Marginer direction="horizontal" margin={16} />
-        <Link to="/customer/access/signin">
+        { localStorage.getItem('user')==null && (<Link to="/customer/access/signin">
           <Button size={19}> Login </Button>
          
-        </Link>
+        </Link>) }
         <Marginer direction="horizontal" margin={16} />
-        <Link to="/">
-         <IconButton aria-label="Show cart items" />
-        <Badge badgeContent={2} color="secondary">
-          <ShoppingCart htmlColor="#ffff" />
-          </Badge>
-        </Link>
+        { localStorage.getItem('user') && (<Link to="/myproducts">
+        <h3 style={{"color":"#fff"}}>My Products</h3>
+        </Link>) }
+        <Marginer direction="horizontal" margin={16} />
+        { localStorage.getItem('user') && (<Link to="/">
+        <h3 onClick={()=>{ localStorage.clear() }} style={{"color":"#fff"}} >Logout</h3>
+        </Link>) }
       </AccessibilityContainer>
     </NavbarContainer>
   );

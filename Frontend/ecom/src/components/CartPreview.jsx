@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import classNames from "classnames";
 import {
   CartStateContext,
@@ -11,20 +11,20 @@ import {
 const CartPreview = () => {
   const { items, isCartOpen } = useContext(CartStateContext);
   const dispatch = useContext(CartDispatchContext);
-  const history = useHistory();
+  // const history = useHistory();
 
-  const handleRemove = (productId) => {
-    return removeFromCart(dispatch, productId);
-  };
+  // const handleRemove = (productId) => {
+  //   return removeFromCart(dispatch, productId);
+  // };
 
-  const handleProceedCheckout = () => {
-    toggleCartPopup(dispatch);
-    history.push("/checkout");
-  };
+  // const handleProceedCheckout = () => {
+  //   toggleCartPopup(dispatch);
+  //   history.push("/checkout");
+  // };
 
   return (
     <div className={classNames("cart-preview", { active: isCartOpen })}>
-      <ul className="cart-items">
+      {/* <ul className="cart-items">
         {items.map((product) => {
           return (
             <li className="cart-item" key={product.name}>
@@ -59,7 +59,7 @@ const CartPreview = () => {
         >
           PROCEED TO CHECKOUT
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
