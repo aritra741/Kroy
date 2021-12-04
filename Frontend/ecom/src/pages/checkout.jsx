@@ -223,10 +223,12 @@ const Checkout = () => {
     setCheckoutStep(checkoutDispatch, nextStep);
   };
 
+  handleClickTimeline(CHECKOUT_STEPS.SHIPPING);
+
   return (
     <div>
       <Navbar />
-    <div className="checkout-page">
+    <div className="container">
       <div className="container">
         <div className="order-details">
           <ul className="timeline">
@@ -264,52 +266,7 @@ const Checkout = () => {
           {step === CHECKOUT_STEPS.SHIPPING && <AddressStep />}
           {step === CHECKOUT_STEPS.PAYMENT && <PaymentStep />}
         </div>
-        <div className="order-summary">
-          <h2>
-            Summary
-            <span>{` (${totalItems}) Items`}</span>
-          </h2>
-          <ul className="cart-items">
-            {items.map((product) => {
-              return (
-                <li className="cart-item" key={product.name}>
-                  <img className="product-image" src={product.image} />
-                  <div className="product-info">
-                    <p className="product-name">{product.name}</p>
-                    <p className="product-price">{product.price}</p>
-                  </div>
-                  <div className="product-total">
-                    <p className="quantity">
-                      {`${product.quantity} ${
-                        product.quantity > 1 ? "Nos." : "No."
-                      }`}
-                    </p>
-                    <p className="amount">{product.quantity * product.price}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-
-          <ul className="total-breakup">
-            <li>
-              <p>Subtotal</p>
-              <p>5000</p>
-            </li>
-            <li>
-              <p>Tax</p>
-              <p>5000</p>
-            </li>
-            <li>
-              <p>Shipping</p>
-              <p>5000</p>
-            </li>
-            <li>
-              <h2>Total</h2>
-              <h2>5000</h2>
-            </li>
-          </ul>
-        </div>
+        
       </div>
     </div>
     </div>

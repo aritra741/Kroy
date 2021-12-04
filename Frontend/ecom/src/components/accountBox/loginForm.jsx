@@ -56,7 +56,8 @@ const Login = ({handleLogin}) => {
   }
 
   return (
-    <BoxContainer>
+    
+    <BoxContainer >
       <FormContainer>
         <Input 
         placeholder="Email" 
