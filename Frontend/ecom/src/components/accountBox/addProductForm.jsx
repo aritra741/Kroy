@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import "./styles.css";
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 const AddProductForm = () => {
-   
+  this.formRef = React.createRef();
+  this.OpenPopUp = this.setPopUpOpen.bind(this);
+  this.state ={
+         
+  }
   const [formData, setFormData] = useState({
     price: "",
     quantity: "",
@@ -17,6 +21,7 @@ const AddProductForm = () => {
       [event.target.name]: event.target.value
     });
 
+    
   const { price, quantity, description, image, collection } = formData;
 
   return (
@@ -64,7 +69,6 @@ const AddProductForm = () => {
   <Dropdown.Toggle variant="success" id="dropdown-basic">
     Dropdown Button
   </Dropdown.Toggle>
-
   <Dropdown.Menu>
     <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
     <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
