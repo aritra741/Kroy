@@ -2,13 +2,13 @@
     outline: 0;
   }
   
-  .App {
+  /* .App {
     font-family: sans-serif;
     display: flex;
     text-align: center;
     align-items: center;
     flex-direction: column;
-  }
+  } */
   
   input {
     display: block;

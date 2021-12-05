@@ -189,6 +189,10 @@ function SingleProduct(){
       fetchProduct()
   }, [])
 
+  function onclose() {
+    setBidPopUpOpen(false)
+  }
+
   return (
       
     <Container>
@@ -223,7 +227,7 @@ function SingleProduct(){
 
       <BidPopUp
           open={BidPopUpOpen}
-        
+          onClose= {onclose}
         />
     </Container>
   );

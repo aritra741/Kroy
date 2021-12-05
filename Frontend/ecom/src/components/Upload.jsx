@@ -22,7 +22,7 @@ const Upload = () => {
         formData.append("collection", 1)
         formData.append("customer", 1)
                 
-        axios.post("http://localhost:8000/store/image/",
+        axios.post("http://localhost:8000/store/products/",
             formData
         )
             .then((result) => {

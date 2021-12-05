@@ -4,7 +4,7 @@ from django.db.models import fields
 from rest_framework import serializers
 from decimal import Decimal
 from django.contrib.auth.models import User
-from store.models import Product, Collection, Customer, Bid
+from store.models import Product, Collection, Customer, Bid, Order
 from rest_framework_simplejwt.tokens import RefreshToken, Token
 
 class UserSerializer(serializers.ModelSerializer):
@@ -59,6 +59,12 @@ class BidSerializer(serializers.ModelSerializer):
 
     class Meta:
         model= Bid
+        fields= '__all__'
+
+class OrderSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model= Order
         fields= '__all__'
 
 

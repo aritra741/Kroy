@@ -3,9 +3,9 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import  BidStyle from "./BidStyle";
 import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
+import BidForm from "./BidForm";
 const styles = (theme) => ({
  paper: {
   "borderRadius": 0
@@ -19,12 +19,8 @@ class BidPopUp extends React.Component {
     this.handleClose= this.handleClose.bind(this)
   }
 
-  handleClose(button) {
-    if (button !== "done") {
-      this.props.onClose(null);
-    } else {
-      this.formRef.current.submitForm();
-    }
+  handleClose() {
+    this.props.onClose()
   }
 
   createCourseFromCourseForm(values) {
@@ -55,7 +51,7 @@ class BidPopUp extends React.Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <BidStyle ref={this.formRef} onSubmit={this.onSubmit.bind(this)} />
+            <BidForm/>
           </DialogContent>
          
         </Dialog>

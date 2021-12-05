@@ -49,6 +49,7 @@ class Order(models.Model):
     placed_at= models.DateTimeField(auto_now_add=True)
     payment_stats= models.CharField(max_length=1, choices=PAYMENT_STATUS_CHOICES, default=PAYMENT_STATUS_PENDING)
     customer= models.ForeignKey(Customer, on_delete=models.PROTECT, related_name='orders')
+    bid= models.ForeignKey(Bid, on_delete=models.PROTECT, related_name='bidOrder', null=True)
 
 class OrderItem(models.Model):
     order= models.ForeignKey(Order, on_delete=models.PROTECT)
