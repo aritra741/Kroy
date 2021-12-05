@@ -173,153 +173,155 @@ const AddressStep = () => {
               >
                 <i className="rsc-icon-arrow_back" /> Login in as Different User
               </button> */}
-              <Button>
-                Proceed to confirmation
+              <Link to="/payment">
+              <Button >
+               Confirm payment 
                 <i className="rsc-icon-arrow_forward" />
               </Button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-};
-
-const PaymentStep = () => {
-  const { shippingAddress } = useContext(CheckoutStateContext);
-  const checkoutDispatch = useContext(CheckoutDispatchContext);
-  const handleBackToAddress = () => {
-    console.log("ashe")
-    setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
-  };
-  const handlePayment = () => {};
-
-  function addOrder()
-  {
-    const formData = new FormData();
-
-        formData.append("payment_stats", "R");
-        formData.append("customer", localStorage.getItem('user'))
-        formData.append("bid", localStorage.getItem('bid'))
-                
-        axios.post("http://localhost:8000/store/addorders/",
-            formData
-        )
-            .then((result) => {
-                console.log("Success:", result);
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-            });
-
-  }
-
-  return (
-    <div className="detail-container">
-      <h2>Payment</h2>
-      {/* <div>
-        <pre>{JSON.stringify(shippingAddress, null, 0)}</pre>
-      </div> */}
-      <Formik
-        initialValues={{
-          fullName: "",
-          phoneNumber: "",
-          addressLine: "",
-          city: "",
-          state: "",
-          code: "",
-          country: ""
-        }}
-        validationSchema={AddressSchema}
-        onSubmit={async (values, { resetForm }) => {
-          try {
-            const addressData = { ...values };
-            resetForm();
-            // handleSaveAddress(addressData);
-          } catch (err) {
-            console.error(err);
-          }
-        }}
-      >
-        {() => (
-          <Form>
-            <div className="field-group">
-              <Field
-                name="fullName"
-                type="text"
-                placeholder="Full Name"
-                component={Input}
-              />
-              <Field
-                name="phoneNumber"
-                type="text"
-                placeholder="Phone Number"
-                component={Input}
-              />
-            </div>
-            <Field
-              name="addressLine"
-              type="text"
-              placeholder="Street and House Number"
-              component={Input}
-            />
-            <div className="field-group">
-              <Field
-                name="city"
-                type="text"
-                placeholder="City"
-                component={Input}
-              />
-              <Field
-                name="state"
-                type="text"
-                placeholder="State"
-                component={Input}
-              />
-            </div>
-            <div className="field-group">
-              <Field
-                name="code"
-                type="text"
-                placeholder="ZIP/Postal Code"
-                component={Input}
-              />
-              <Field
-                name="country"
-                type="text"
-                placeholder="Country"
-                component={Input}
-              />
-            </div>
-            <div className="actions">
-              {/* <button
-                type="button"
-                className="outline"
-                onClick={() => handleBackToLogin()}
-              >
-                <i className="rsc-icon-arrow_back" /> Login in as Different User
-              </button> */}
-              <div onClick={addOrder}>
-              <Link to="/payment">
-              <Button>
-                Confirm Payment
-              </Button>
               </Link>
-                </div>
             </div>
           </Form>
         )}
       </Formik>
-      <div className="actions">
-        
-        {/* <Button disabled={!shippingAddress} onClick={() => handlePayment()}>
-          Save Address
-          <i className="rsc-icon-arrow_forward" />
-        </Button> */}
-      </div>
     </div>
   );
 };
+
+// const PaymentStep = () => {
+//   const { shippingAddress } = useContext(CheckoutStateContext);
+//   const checkoutDispatch = useContext(CheckoutDispatchContext);
+//   const handleBackToAddress = () => {
+//     console.log("ashe")
+//     setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
+//   };
+//   const handlePayment = () => {};
+
+//   function addOrder()
+//   {
+//     const formData = new FormData();
+
+//         formData.append("payment_stats", "R");
+//         formData.append("customer", localStorage.getItem('user'))
+//         formData.append("bid", localStorage.getItem('bid'))
+                
+//         axios.post("http://localhost:8000/store/addorders/",
+//             formData
+//         )
+//             .then((result) => {
+//                 console.log("Success:", result);
+//             })
+//             .catch((error) => {
+//                 console.error("Error:", error);
+//             });
+
+//   }
+
+//   return (
+//     <div className="detail-container">
+//       <h2>Payment</h2>
+//       {/* <div>
+//         <pre>{JSON.stringify(shippingAddress, null, 0)}</pre>
+//       </div> */}
+//       <Formik
+//         initialValues={{
+//           fullName: "",
+//           phoneNumber: "",
+//           addressLine: "",
+//           city: "",
+//           state: "",
+//           code: "",
+//           country: ""
+//         }}
+//         validationSchema={AddressSchema}
+//         onSubmit={async (values, { resetForm }) => {
+//           try {
+//             const addressData = { ...values };
+//             resetForm();
+//             // handleSaveAddress(addressData);
+//           } catch (err) {
+//             console.error(err);
+//           }
+//         }}
+//       >
+//         {() => (
+//           <Form>
+//             <div className="field-group">
+//               <Field
+//                 name="fullName"
+//                 type="text"
+//                 placeholder="Full Name"
+//                 component={Input}
+//               />
+//               <Field
+//                 name="phoneNumber"
+//                 type="text"
+//                 placeholder="Phone Number"
+//                 component={Input}
+//               />
+//             </div>
+//             <Field
+//               name="addressLine"
+//               type="text"
+//               placeholder="Street and House Number"
+//               component={Input}
+//             />
+//             <div className="field-group">
+//               <Field
+//                 name="city"
+//                 type="text"
+//                 placeholder="City"
+//                 component={Input}
+//               />
+//               <Field
+//                 name="state"
+//                 type="text"
+//                 placeholder="State"
+//                 component={Input}
+//               />
+//             </div>
+//             <div className="field-group">
+//               <Field
+//                 name="code"
+//                 type="text"
+//                 placeholder="ZIP/Postal Code"
+//                 component={Input}
+//               />
+//               <Field
+//                 name="country"
+//                 type="text"
+//                 placeholder="Country"
+//                 component={Input}
+//               />
+//             </div>
+//             <div className="actions">
+//               {/* <button
+//                 type="button"
+//                 className="outline"
+//                 onClick={() => handleBackToLogin()}
+//               >
+//                 <i className="rsc-icon-arrow_back" /> Login in as Different User
+//               </button> */}
+//               <div onClick={addOrder}>
+//               <Link to="/payment">
+//               <Button>
+//                 Confirm Payment
+//               </Button>
+//               </Link>
+//                 </div>
+//             </div>
+//           </Form>
+//         )}
+//       </Formik>
+//       <div className="actions">
+        
+//         {/* <Button disabled={!shippingAddress} onClick={() => handlePayment()}>
+//           Save Address
+//           <i className="rsc-icon-arrow_forward" />
+//         </Button> */}
+//       </div>
+//     </div>
+//   );
+// };
 
 const Checkout = () => {
   const { items = [] } = useContext(CartStateContext);
@@ -344,7 +346,7 @@ const Checkout = () => {
     <div className="container">
       <div className="container">
         <div className="order-details">
-          <ul className="timeline">
+       
             {/* <li
               className={classNames({
                 // done: isLoggedIn,
@@ -355,17 +357,16 @@ const Checkout = () => {
               <h2>Sign In</h2>
               <i className="rsc-icon-check_circle" />
             </li> */}
-            <li
+            <div
               className={classNames({
                 done: shippingAddress !== null,
                 active: step === CHECKOUT_STEPS.SHIPPING
               })}
-              onClick={() => handleClickTimeline(CHECKOUT_STEPS.SHIPPING)}
+              onClick={() => handleClickTimeline(CHECKOUT_STEPS.PAYMENT)}
             >
-              <h2>Shipping</h2>
-              <i className="rsc-icon-check_circle" />
-            </li>
-            <li
+            
+            </div>
+            {/* <li
               className={classNames({
                 done: false,
                 active: step === CHECKOUT_STEPS.PAYMENT
@@ -374,10 +375,10 @@ const Checkout = () => {
             >
               <h2>Payment</h2>
               <i className="rsc-icon-check_circle" />
-            </li>
-          </ul>
+            </li> */}
+          
           {step === CHECKOUT_STEPS.SHIPPING && <AddressStep />}
-          {step === CHECKOUT_STEPS.PAYMENT && <PaymentStep />}
+         
         </div>
         
       </div>
