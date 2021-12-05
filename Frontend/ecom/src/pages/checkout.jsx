@@ -277,11 +277,13 @@ const PaymentStep = () => {
               >
                 <i className="rsc-icon-arrow_back" /> Login in as Different User
               </button> */}
+              <div onClick={()=>console.log("clicked")}>
               <Link to="/payment">
               <Button>
                 Confirm Payment
               </Button>
               </Link>
+                </div>
             </div>
           </Form>
         )}

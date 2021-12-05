@@ -11,7 +11,7 @@ from rest_framework.serializers import Serializer
 from .models import Collection, Customer, Product, Bid
 from django.contrib.auth.decorators import login_required
 from django.db.models.aggregates import Count, Max, Min
-from .serializers import CollectionSerializer, ProductSerializer, UserSerializer, UserSerializerWithToken, CustomerSerializer, BidSerializer
+from .serializers import CollectionSerializer, OrderSerializer, ProductSerializer, UserSerializer, UserSerializerWithToken, CustomerSerializer, BidSerializer
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -213,6 +213,16 @@ def image(request):
     print("entered")
     print(request.data['image'])
     serializer= ProductSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    else:
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['POST'])
+def confirm_order(request):
+    serializer= OrderSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)

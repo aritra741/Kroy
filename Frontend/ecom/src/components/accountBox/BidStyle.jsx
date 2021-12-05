@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { LoginForm } from "./loginForm";
 import { AccountContext } from "./context";
-import { BidForm } from "./BidForm";
+import BidForm from "./BidForm";
 import { MutedLink } from "./common";
 
 const BoxContainer = styled.div`

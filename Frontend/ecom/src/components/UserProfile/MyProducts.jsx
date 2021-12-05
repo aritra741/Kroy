@@ -52,6 +52,10 @@ export function MyProducts() {
     fetchProducts();
   }, []);
 
+  function onclose(){
+    setaddProductPopUpOpen(false)
+  }
+
   const listItems = products.map((item) => (
     <Link to={`/products/${item.id}`}>
       <div className="card" key={item.id}>
@@ -92,7 +96,7 @@ export function MyProducts() {
       </div>
       <AddProductPopup
           open= {addProductPopUpOpen}
-        
+          onClose= {onclose}
         />
     </PageContainer>
   );

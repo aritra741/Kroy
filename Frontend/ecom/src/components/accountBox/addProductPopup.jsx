@@ -6,7 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 //import  AddProductForm from "./AddProductF";
 import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
-import AddProductForm from "./AddProductForm";
+import AddProductForm from "./addProductForm";
 const styles = (theme) => ({
  paper: {
   "borderRadius": 0
@@ -20,16 +20,18 @@ class AddProductPopup extends React.Component {
     this.handleClose= this.handleClose.bind(this)
   }
 
-  handleClose(button) {
-    if (button !== "done") {
-      this.props.onClose(null);
-    } else {
-      this.formRef.current.submitForm();
-    }
+  handleClose() {
+    console.log()
+    // if (button !== "done") {
+      this.props.onClose();
+    // } else {
+    //   this.formRef.current.submitForm();
+    // }
   }
 
   createCourseFromCourseForm(values) {
     //todo: create Course from values
+    console.log(values)
     return {
       title: values.courseTitle,
       start: new Date(values.startTime),
