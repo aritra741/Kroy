@@ -7,7 +7,7 @@ class Collection(models.Model):
     title= models.CharField(max_length=255)
 
     def __str__(self) -> str:
-        return self.title
+        return self.title 
 
 class Customer(models.Model):
     user= models.ForeignKey(User, on_delete=models.CASCADE, null=True)
@@ -26,6 +26,7 @@ class Product(models.Model):
     collection= models.ForeignKey(Collection, on_delete=PROTECT, related_name='products') # The product won't be deleted even if we accidentally delete a collection
     customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerProducts')
     image= models.ImageField(null=True, blank= True)
+    
 
 class Bid(models.Model):
     description= models.TextField(null=True)

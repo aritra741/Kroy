@@ -36,7 +36,7 @@ import {Footer} from "../../components/Footer"
 export function HomePage() {
 
     const [products, setproducts] = useState([])
-
+    const [collection, setcollection] = useState([])
     useEffect(() => {
 
         async function fetchProducts(){
@@ -46,11 +46,22 @@ export function HomePage() {
         }
 
         fetchProducts()
+
+        async function fetchCollection(){
+            const {data}= await axios.get('http://127.0.0.1:8000/store/collections')
+            setcollection(data)
+            console.log(data)
+        }
+
+        fetchCollection()
     }, [])
     
 
+
     const listItems = products.map((item) =>
-    <Link to={`/products/${item.id}`} >
+   {
+       item.collection ==11 && (
+        <Link to={`/products/${item.id}`} >
         <div className="card" key={item.id}>
         
             <div className="card_img">
@@ -64,8 +75,12 @@ export function HomePage() {
             </div>
         </div>
         </Link>
+       )
+   }
 
     );
+
+    
     return (
         
         <PageContainer>
