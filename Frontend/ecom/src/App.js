@@ -24,6 +24,7 @@ import CheckoutPage from "./pages/checkout";
 import Upload from "./components/Upload";
 import "./assets/scss/style.scss";
 import { MyProducts } from "./components/UserProfile/MyProducts";
+import AfterPayment from "./components/AfterPayment/AfterPayment";
 
 const App = () => {
   return (
@@ -52,6 +53,10 @@ const App = () => {
                   <Route
                     path="/upload"
                     component={Upload}
+                  />
+                  <Route
+                    path="/done"
+                    component={AfterPayment}
                   />
                   <Route
                     path="/table"

@@ -18,6 +18,7 @@ import Input from "../components/core/form-controls/Input";
 import { phoneRegExp } from "../constants/common";
 import {Navbar} from "../components/navbar"
 import {Footer} from "../components/Footer"
+import axios from 'axios'
 
 const AddressSchema = Yup.object().shape(
   {
@@ -173,7 +174,7 @@ const AddressStep = () => {
                 <i className="rsc-icon-arrow_back" /> Login in as Different User
               </button> */}
               <Button>
-                Proceed to payment
+                Proceed to confirmation
                 <i className="rsc-icon-arrow_forward" />
               </Button>
             </div>
@@ -192,6 +193,27 @@ const PaymentStep = () => {
     setCheckoutStep(checkoutDispatch, CHECKOUT_STEPS.SHIPPING);
   };
   const handlePayment = () => {};
+
+  function addOrder()
+  {
+    const formData = new FormData();
+
+        formData.append("payment_stats", "R");
+        formData.append("customer", localStorage.getItem('user'))
+        formData.append("bid", localStorage.getItem('bid'))
+                
+        axios.post("http://localhost:8000/store/addorders/",
+            formData
+        )
+            .then((result) => {
+                console.log("Success:", result);
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+
+  }
+
   return (
     <div className="detail-container">
       <h2>Payment</h2>
@@ -277,7 +299,7 @@ const PaymentStep = () => {
               >
                 <i className="rsc-icon-arrow_back" /> Login in as Different User
               </button> */}
-              <div onClick={()=>console.log("clicked")}>
+              <div onClick={addOrder}>
               <Link to="/payment">
               <Button>
                 Confirm Payment
@@ -289,13 +311,7 @@ const PaymentStep = () => {
         )}
       </Formik>
       <div className="actions">
-        <button
-        type="button"
-          className="outline"
-          onClick={() => handleBackToAddress()}
-        >
-          <i className="rsc-icon-arrow_back" /> Back to Shipping Details
-        </button>
+        
         {/* <Button disabled={!shippingAddress} onClick={() => handlePayment()}>
           Save Address
           <i className="rsc-icon-arrow_forward" />
