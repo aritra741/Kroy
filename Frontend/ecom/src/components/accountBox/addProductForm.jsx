@@ -1,20 +1,46 @@
 import React, { useState } from "react";
 import "./styles.css";
 import { Dropdown, DropdownButton } from 'react-bootstrap';
+import axios from "axios";
 const AddProductForm = () => {
-  this.formRef = React.createRef();
-  this.OpenPopUp = this.setPopUpOpen.bind(this);
-  this.state ={
-         
-  }
+  const [selectedFile, setSelectedFile]= useState()
+
+  function changeHandler(event) {
+      setSelectedFile(event.target.files[0]);
+  
+    };
   const [formData, setFormData] = useState({
-    price: "",
+    title:"",
+    budget: "",
     quantity: "",
     description: "",
     image: "",
     collection:""
   });
+  
+  function handleSubmission() {
 
+    const Data = new FormData();
+
+    Data.append("image", selectedFile);
+    Data.append("title", formData.title)
+    Data.append("description", formData.description)
+    Data.append("budget", formData.budget)
+    Data.append("quantity", formData.quantity)
+    Data.append("collection", formData.collection)
+    Data.append("customer", 1)
+            
+    axios.post("http://localhost:8000/store/products/",
+        Data
+    )
+        .then((result) => {
+            console.log("Success:", result);
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+
+}
   const updateFormData = event =>
     setFormData({
       ...formData,
@@ -22,23 +48,31 @@ const AddProductForm = () => {
     });
 
     
-  const { price, quantity, description, image, collection } = formData;
+  const {title, budget,quantity, description, image, collection } = formData;
 
   return (
     <form>
-      <input
-        value={price}
+       <input
+        value={title}
         onChange={e => updateFormData(e)}
-        placeholder="price"
-        type="number"
-        name="price"
+        placeholder="title"
+        type="text"
+        name="title"
+        required
+      />
+      <input
+        value={budget}
+        onChange={e => updateFormData(e)}
+        placeholder="budget"
+        type="text"
+        name="budget"
         required
       />
       <input
         value={quantity}
         onChange={e => updateFormData(e)}
         placeholder="quantity"
-        type="number"
+        type="text"
         name="quantity"
         required
       />
@@ -75,16 +109,22 @@ const AddProductForm = () => {
     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
   </Dropdown.Menu>
 </Dropdown> */}
+
+<div className="upload">
+        <input type="file" name="file" className = "upload" onChange={changeHandler} />
+        </div>
+        
 <label>
-    Collections : 
           
-          <select type= "button">
+          <select type= "button" style ={{'margin' : "0px 0px 0px 20px"}}>
            <option value="Electronics">Electronics</option>
             <option value="Food">Food</option>
             <option value="Book">Book</option>
             <option value="Accessories">Accessories</option>
           </select>
         </label>
+
+        <br></br>
 
       <button type="submit">Submit</button>
     </form>

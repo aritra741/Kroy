@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import "./styles.css";
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 const BidForm = () => {
-   
+  const [selectedFile, setSelectedFile]= useState()
+
+  function changeHandler(event) {
+      setSelectedFile(event.target.files[0]);
+  
+    };
   const [formData, setFormData] = useState({
     price: "",
     quantity: "",
     description: "",
-    image: ""
+    image: "",
+    collection:""
   });
 
   const updateFormData = event =>
@@ -16,7 +22,8 @@ const BidForm = () => {
       [event.target.name]: event.target.value
     });
 
-  const { price, quantity, description, image } = formData;
+    
+  const { price, quantity, description, image, collection } = formData;
 
   return (
     <form>
@@ -24,7 +31,7 @@ const BidForm = () => {
         value={price}
         onChange={e => updateFormData(e)}
         placeholder="price"
-        type="number"
+        type="text"
         name="price"
         required
       />
@@ -32,7 +39,7 @@ const BidForm = () => {
         value={quantity}
         onChange={e => updateFormData(e)}
         placeholder="quantity"
-        type="number"
+        type="text"
         name="quantity"
         required
       />
@@ -63,13 +70,28 @@ const BidForm = () => {
   <Dropdown.Toggle variant="success" id="dropdown-basic">
     Dropdown Button
   </Dropdown.Toggle>
-
   <Dropdown.Menu>
     <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
     <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
     <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
   </Dropdown.Menu>
 </Dropdown> */}
+
+<div className="upload">
+        <input type="file" name="file" className = "upload" onChange={changeHandler} />
+        </div>
+        
+<label>
+          
+          <select type= "button" style ={{'margin' : "0px 0px 0px 20px"}}>
+           <option value="Electronics">Electronics</option>
+            <option value="Food">Food</option>
+            <option value="Book">Book</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+        </label>
+
+        <br></br>
 
       <button type="submit">Submit</button>
     </form>
