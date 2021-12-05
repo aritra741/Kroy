@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import axios from "axios"; 
+import { useHistory } from "react-router";
 import { Marginer } from "../marginer";
 import {
   BoldLink,
@@ -13,7 +14,7 @@ import { AccountContext } from "./context";
 
 export function SignupForm(props) {
   const { switchToSignin } = useContext(AccountContext);
-
+  const history= useHistory()
   
   const[name, setname]= useState('')
   const[email, setemail]= useState('')
@@ -34,6 +35,8 @@ export function SignupForm(props) {
       config)
         
       console.log(data)
+      localStorage.setItem('user', data.id)
+      history.push("../../");
     }
     catch(e)
     {

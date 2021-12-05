@@ -32,6 +32,8 @@ const Login = ({handleLogin}) => {
   const history= useHistory()
   const[email, setemail]= useState('')
   const[password, setpassword]= useState('')
+  const[correct, setCorrect]= useState(true)
+
   async function signin()
   {
     console.log(email)
@@ -51,10 +53,13 @@ const Login = ({handleLogin}) => {
       console.log(data)
       localStorage.setItem('user', data.id)
       console.log(localStorage.getItem('user'));
+      setCorrect(true)
       history.push("../../myproducts");
+      
     }
     catch(e)
     {
+      setCorrect(false)
       console.log(e)
     }
   }
@@ -73,6 +78,8 @@ const Login = ({handleLogin}) => {
         value={password}
         onChange={ (e)=>{setpassword(e.target.value)} } />
       </FormContainer>
+      <Marginer direction="vertical" margin="1em" />
+      { !correct && (<p style={{"color": "#ff0000"}} >Please provide correct email/password </p>) }
       <Marginer direction="vertical" margin="1em" />
       <SubmitButton onClick={signin}>Login</SubmitButton>
       <Marginer direction="vertical" margin={5} />

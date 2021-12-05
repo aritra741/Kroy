@@ -25,6 +25,9 @@ import Upload from "./components/Upload";
 import "./assets/scss/style.scss";
 import { MyProducts } from "./components/UserProfile/MyProducts";
 import AfterPayment from "./components/AfterPayment/AfterPayment";
+import {Electronics} from './components/Collections/Electronics'
+import { Furnitures } from "./components/Collections/Furnitures";
+import { Other } from "./components/Collections/Other";
 
 const App = () => {
   return (
@@ -45,6 +48,20 @@ const App = () => {
                     component={CheckoutPage}
                     layout={CommonLayout}
                   />
+                  <Route
+                    path="/electronics"
+                    component={Electronics}
+                  />
+                  <Route
+                    path="/furnitures"
+                    component={Furnitures}
+                  />
+                  <Route
+                    path="/other"
+                    component={Other}
+                  />
+                  
+                  
                   <Route
                     path="/auth"
                     component={AuthPage}

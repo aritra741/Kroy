@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import { Navbar } from "../../components/navbar";
-import { PageContainer } from "../../components/pageContainer";
-import { TopSection } from "./topSection";
+import { Navbar } from "../navbar";
+import { PageContainer } from "../pageContainer";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import SingleProduct from "../../components/Products/Product/SingleProduct"
+import SingleProduct from "../Products/Product/SingleProduct"
 import { CommonStateContext } from "../../contexts/common";
 // import Products from "../../components/Products/Products"
 // export function HomePage(props)
@@ -20,7 +19,7 @@ import { CommonStateContext } from "../../contexts/common";
 
 import React from 'react'
 import './App.css'
-import { Footer } from "../../components/Footer"
+import { Footer } from "../Footer"
 // const product_card=[
 //     {id: 1, name: "Shoes", description: "Running shoes", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donecvenenatis, dolor in finibus malesuada, lectus ipsum porta nunc, atiaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, egettristique tortor pretium ut. Curabitur elit justo, consequat idcondimentum ac, volutpat ornare.", price: "1500 taka", image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/how-to-buy-running-shoes-1611448820.jpg?crop=0.516xw:0.774xh;0.247xw,0.226xh&resize=640:*" },
 //     {id: 2, name: "Macbook", description: "Apple macbook", details: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donecvenenatis, dolor in finibus malesuada, lectus ipsum porta nunc, atiaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, egettristique tortor pretium ut. Curabitur elit justo, consequat idcondimentum ac, volutpat ornare.", price: "90000 taka", image: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-air-gold-select-201810?wid=904&hei=840&fmt=jpeg&qlt=80&.v=1633027804000" },
@@ -33,7 +32,7 @@ import { Footer } from "../../components/Footer"
 //     ]
 
 
-export function HomePage() {
+export function Other() {
 
     const [products, setproducts] = useState([])
     const [collection, setcollection] = useState([])
@@ -59,99 +58,6 @@ export function HomePage() {
 
 
     const listItems1 = products.map((item) => {
-        if (item.collection == 1)
-
-            return (
-                <Link to={`/products/${item.id}`} >
-                    <div className="card" key={item.id}>
-
-                        <div className="card_img">
-                            <img src={'http://127.0.0.1:8000' + item.image} />
-                        </div>
-                        <div className="card_header">
-                            <h2>{item.title}</h2>
-                            <p>{item.description}</p>
-                            <p className="price">{item.budget}<span></span></p>
-                            <div className="btn">Show Details</div>
-                        </div>
-                    </div>
-                </Link>
-            )
-    }
-
-    );
-
-
-    const listItems2 = products.map((item) => {
-        if (item.collection == 2)
-
-            return (
-                <Link to={`/products/${item.id}`} >
-                    <div className="card" key={item.id}>
-
-                        <div className="card_img">
-                            <img src={'http://127.0.0.1:8000' + item.image} />
-                        </div>
-                        <div className="card_header">
-                            <h2>{item.title}</h2>
-                            <p>{item.description}</p>
-                            <p className="price">{item.budget}<span></span></p>
-                            <div className="btn">Show Details</div>
-                        </div>
-                    </div>
-                </Link>
-            )
-    }
-
-    );
-
-    const listItems3 = products.map((item) => {
-        if (item.collection == 3)
-
-            return (
-                <Link to={`/products/${item.id}`} >
-                    <div className="card" key={item.id}>
-
-                        <div className="card_img">
-                            <img src={'http://127.0.0.1:8000' + item.image} />
-                        </div>
-                        <div className="card_header">
-                            <h2>{item.title}</h2>
-                            <p>{item.description}</p>
-                            <p className="price">{item.budget}<span></span></p>
-                            <div className="btn">Show Details</div>
-                        </div>
-                    </div>
-                </Link>
-            )
-    }
-
-    );
-
-    const listItems4 = products.map((item) => {
-        if (item.collection == 4)
-
-            return (
-                <Link to={`/products/${item.id}`} >
-                    <div className="card" key={item.id}>
-
-                        <div className="card_img">
-                            <img src={'http://127.0.0.1:8000' + item.image} />
-                        </div>
-                        <div className="card_header">
-                            <h2>{item.title}</h2>
-                            <p>{item.description}</p>
-                            <p className="price">{item.budget}<span></span></p>
-                            <div className="btn">Show Details</div>
-                        </div>
-                    </div>
-                </Link>
-            )
-    }
-
-    );
-
-    const listItems5 = products.map((item) => {
         if (item.collection == 10)
 
             return (
@@ -178,34 +84,16 @@ export function HomePage() {
     return (
 
         <PageContainer>
-            <TopSection>
-                <Navbar useTransparent />
-            </TopSection>
+            
+                <Navbar />
             <div className='container'>
-               <Link to="/electronics">
-               <h1 style={{"color": "#fff"}}>
-                    Electronics
-                </h1>
-               </Link>
-                <div className="main_content">
-                    {listItems1}
-                </div>
-               <Link to="/furnitures">
-               <h1 style={{"color": "#fff"}}>
-                    Furnitures
-                </h1>
-               </Link>
-                <div className="main_content">
-                    {listItems2}
-                </div>
-                <Link to="/other">
                 <h1 style={{"color": "#fff"}}>
                     Others
                 </h1>
-                </Link>
                 <div className="main_content">
-                    {listItems5}
+                    {listItems1}
                 </div>
+               
                 <Footer>
                 </Footer>
             </div>

@@ -59,7 +59,7 @@ class BidPopUp extends React.Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <BidForm/>
+            <BidForm onclose={this.handleClose} productID= {this.props.productID}/>
           </DialogContent>
          
         </Dialog>

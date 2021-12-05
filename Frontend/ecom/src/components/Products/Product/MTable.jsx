@@ -118,7 +118,7 @@ function MTable({id}) {
     
                 </Typography>
               </TableCell>
-              <TableCell>{bids.image}</TableCell>
+              <TableCell><img style={{ "height": "10", "width": "10" }} src={"http://127.0.0.1:8000"+bids.image} /></TableCell>
               <TableCell>
   
                  <div onClick={()=>{

@@ -228,7 +228,7 @@ function SingleProduct(){
       <BidPopUp
           open={BidPopUpOpen}
           onClose= {onclose}
-        />
+          productID= {id} />
     </Container>
   );
 };

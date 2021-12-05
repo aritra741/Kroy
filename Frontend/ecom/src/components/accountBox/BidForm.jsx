@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./styles.css";
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-const BidForm = () => {
+import axios from 'axios'
+const BidForm = ({onclose, productID}) => {
   const [selectedFile, setSelectedFile]= useState()
 
   function changeHandler(event) {
@@ -11,10 +12,37 @@ const BidForm = () => {
   const [formData, setFormData] = useState({
     price: "",
     quantity: "",
-    description: "",
-    image: "",
-    collection:""
+    description: ""
   });
+
+  async function handleSubmission(event) {
+
+    event.preventDefault();
+    const Data = new FormData();
+
+    console.log("submit clicked")
+
+    Data.append("image", selectedFile);
+    Data.append("description", formData.description)
+    Data.append("price", formData.price)
+    Data.append("quantity", formData.quantity)
+    Data.append("customer", localStorage.getItem('user'))
+    Data.append("product", productID)
+    
+      
+    const result= await axios.post("http://localhost:8000/store/bids/",
+      Data
+    )
+      .then((result) => {
+        console.log("Success:", result);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+      console.log(result)
+      onclose()
+  }
 
   const updateFormData = event =>
     setFormData({
@@ -23,11 +51,22 @@ const BidForm = () => {
     });
 
     
-  const { price, quantity, description, image, collection } = formData;
+  const { price, quantity, description } = formData;
 
   return (
-    <form>
+    <form onSubmit={handleSubmission}>
       <input
+      style={{
+        "display": "block",
+    "min-width": "90%",
+    "margin": "1em",
+    "padding": "1em",
+    "width": "24em",
+    "border-radius": "8px",
+    "border-style": "none",
+    "border": "1px solid #e4e6e8",
+    "transition": "0.1s ease"
+      }}
         value={price}
         onChange={e => updateFormData(e)}
         placeholder="price"
@@ -36,6 +75,17 @@ const BidForm = () => {
         required
       />
       <input
+      style={{
+        "display": "block",
+    "min-width": "90%",
+    "margin": "1em",
+    "padding": "1em",
+    "width": "24em",
+    "border-radius": "8px",
+    "border-style": "none",
+    "border": "1px solid #e4e6e8",
+    "transition": "0.1s ease"
+      }}
         value={quantity}
         onChange={e => updateFormData(e)}
         placeholder="quantity"
@@ -44,6 +94,17 @@ const BidForm = () => {
         required
       />
       <input
+      style={{
+        "display": "block",
+    "min-width": "90%",
+    "margin": "1em",
+    "padding": "1em",
+    "width": "24em",
+    "border-radius": "8px",
+    "border-style": "none",
+    "border": "1px solid #e4e6e8",
+    "transition": "0.1s ease"
+      }}
         value={description}
         onChange={e => updateFormData(e)}
         placeholder="description"
@@ -78,19 +139,21 @@ const BidForm = () => {
 </Dropdown> */}
 
 <div className="upload">
-        <input type="file" name="file" className = "upload" onChange={changeHandler} />
+        <input
+        style={{
+          "display": "block",
+      "min-width": "90%",
+      "margin": "1em",
+      "padding": "1em",
+      "width": "24em",
+      "border-radius": "8px",
+      "border-style": "none",
+      "border": "1px solid #e4e6e8",
+      "transition": "0.1s ease"
+        }}
+        type="file" name="file" className = "upload" onChange={changeHandler} />
         </div>
-        
-<label>
-          
-          <select type= "button" style ={{'margin' : "0px 0px 0px 20px"}}>
-           <option value="Electronics">Electronics</option>
-            <option value="Food">Food</option>
-            <option value="Book">Book</option>
-            <option value="Accessories">Accessories</option>
-          </select>
-        </label>
-
+      
         <br></br>
 
       <button type="submit">Submit</button>

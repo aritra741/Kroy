@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Navbar } from "../../components/navbar";
 import { PageContainer } from "../../components/pageContainer";
-import { TopSection } from "./topSection";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import SingleProduct from "../../components/Products/Product/SingleProduct"
@@ -33,7 +32,7 @@ import { Footer } from "../../components/Footer"
 //     ]
 
 
-export function HomePage() {
+export function Electronics() {
 
     const [products, setproducts] = useState([])
     const [collection, setcollection] = useState([])
@@ -82,130 +81,19 @@ export function HomePage() {
     );
 
 
-    const listItems2 = products.map((item) => {
-        if (item.collection == 2)
-
-            return (
-                <Link to={`/products/${item.id}`} >
-                    <div className="card" key={item.id}>
-
-                        <div className="card_img">
-                            <img src={'http://127.0.0.1:8000' + item.image} />
-                        </div>
-                        <div className="card_header">
-                            <h2>{item.title}</h2>
-                            <p>{item.description}</p>
-                            <p className="price">{item.budget}<span></span></p>
-                            <div className="btn">Show Details</div>
-                        </div>
-                    </div>
-                </Link>
-            )
-    }
-
-    );
-
-    const listItems3 = products.map((item) => {
-        if (item.collection == 3)
-
-            return (
-                <Link to={`/products/${item.id}`} >
-                    <div className="card" key={item.id}>
-
-                        <div className="card_img">
-                            <img src={'http://127.0.0.1:8000' + item.image} />
-                        </div>
-                        <div className="card_header">
-                            <h2>{item.title}</h2>
-                            <p>{item.description}</p>
-                            <p className="price">{item.budget}<span></span></p>
-                            <div className="btn">Show Details</div>
-                        </div>
-                    </div>
-                </Link>
-            )
-    }
-
-    );
-
-    const listItems4 = products.map((item) => {
-        if (item.collection == 4)
-
-            return (
-                <Link to={`/products/${item.id}`} >
-                    <div className="card" key={item.id}>
-
-                        <div className="card_img">
-                            <img src={'http://127.0.0.1:8000' + item.image} />
-                        </div>
-                        <div className="card_header">
-                            <h2>{item.title}</h2>
-                            <p>{item.description}</p>
-                            <p className="price">{item.budget}<span></span></p>
-                            <div className="btn">Show Details</div>
-                        </div>
-                    </div>
-                </Link>
-            )
-    }
-
-    );
-
-    const listItems5 = products.map((item) => {
-        if (item.collection == 10)
-
-            return (
-                <Link to={`/products/${item.id}`} >
-                    <div className="card" key={item.id}>
-
-                        <div className="card_img">
-                            <img src={'http://127.0.0.1:8000' + item.image} />
-                        </div>
-                        <div className="card_header">
-                            <h2>{item.title}</h2>
-                            <p>{item.description}</p>
-                            <p className="price">{item.budget}<span></span></p>
-                            <div className="btn">Show Details</div>
-                        </div>
-                    </div>
-                </Link>
-            )
-    }
-
-    );
-
-
     return (
 
         <PageContainer>
-            <TopSection>
-                <Navbar useTransparent />
-            </TopSection>
+            
+                <Navbar />
             <div className='container'>
-               <Link to="/electronics">
-               <h1 style={{"color": "#fff"}}>
+                <h1 style={{"color": "#fff"}}>
                     Electronics
                 </h1>
-               </Link>
                 <div className="main_content">
                     {listItems1}
                 </div>
-               <Link to="/furnitures">
-               <h1 style={{"color": "#fff"}}>
-                    Furnitures
-                </h1>
-               </Link>
-                <div className="main_content">
-                    {listItems2}
-                </div>
-                <Link to="/other">
-                <h1 style={{"color": "#fff"}}>
-                    Others
-                </h1>
-                </Link>
-                <div className="main_content">
-                    {listItems5}
-                </div>
+               
                 <Footer>
                 </Footer>
             </div>

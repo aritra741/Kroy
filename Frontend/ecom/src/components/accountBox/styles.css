@@ -10,7 +10,7 @@
     flex-direction: column;
   } */
   
-  input {
+  inp {
     display: block;
     min-width: 90%;
     margin: 1em;

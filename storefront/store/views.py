@@ -139,6 +139,7 @@ def product_list(request):
         return Response(serializer.data)
     elif request.method=='POST':
         serializer= ProductSerializer(data=request.data)
+        print(request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -211,10 +212,10 @@ def collection_detail(request, pk):
 @api_view(['POST'])
 def image(request):
     print("entered")
-    print(request.data['image'])
+    print(request.data)
     serializer= ProductSerializer(data=request.data)
     if serializer.is_valid():
-        serializer.save()
+        # serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -58,7 +58,7 @@ class AddProductPopup extends React.Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <AddProductForm />
+            <AddProductForm onclose={this.handleClose} />
           </DialogContent>
          
         </Dialog>
