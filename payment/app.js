@@ -61,7 +61,7 @@ app.get('/ssl-request', async (req, res, next) => {
 })
 
 app.post("/ssl-payment-success", async(req,res,next)=>{
-    res.redirect('http://127.0.0.1:3000/')
+    res.redirect('http://127.0.0.1:3000/done')
 })
 
 app.post("/ssl-payment-failure", async(req,res,next)=>{
