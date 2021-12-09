@@ -15,7 +15,7 @@ import axios from "axios";
 
 export function LoginForm(props) {
 
-  const[isLoggedIn, setLoggedIn] = useState(false)
+  const [isLoggedIn, setLoggedIn] = useState(false)
   return (
     <div className="App">
       {!isLoggedIn ? (
@@ -27,59 +27,60 @@ export function LoginForm(props) {
   );
 
 }
-const Login = ({handleLogin}) => {
+const Login = ({ handleLogin }) => {
   const { switchToSignup } = useContext(AccountContext);
-  const history= useHistory()
-  const[email, setemail]= useState('')
-  const[password, setpassword]= useState('')
-  const[correct, setCorrect]= useState(true)
+  const history = useHistory()
+  const [email, setemail] = useState('')
+  const [password, setpassword] = useState('')
+  const [correct, setCorrect] = useState(true)
 
-  async function signin()
-  {
+  async function signin() {
     console.log(email)
     console.log(password)
-    try{
-      const config= {
+    try {
+      const config = {
         headers: {
           'Content-type': 'application/json'
         }
       }
-      const {data}= await axios.post(
+      const { data } = await axios.post(
         'http://127.0.0.1:8000/store/users/login/',
-        {'username': email,
-      'email': email, 'password': password},
-      config)
-        
+        {
+          'username': email,
+          'email': email, 'password': password
+        },
+        config)
+
       console.log(data)
       localStorage.setItem('user', data.id)
       console.log(localStorage.getItem('user'));
       setCorrect(true)
+
       history.push("../../myproducts");
-      
+
     }
-    catch(e)
-    {
+    catch (e) {
       setCorrect(false)
       console.log(e)
     }
   }
 
   return (
-    
+
     <BoxContainer >
       <FormContainer>
-        <Input 
-        placeholder="Email" 
-        value={email}
-        onChange={ (e)=>{setemail(e.target.value)} } />
-        <Input 
-        type="password" 
-        placeholder="Password" 
-        value={password}
-        onChange={ (e)=>{setpassword(e.target.value)} } />
+        <Input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => { setemail(e.target.value) }} />
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => { setpassword(e.target.value) }} />
       </FormContainer>
       <Marginer direction="vertical" margin="1em" />
-      { !correct && (<p style={{"color": "#ff0000"}} >Please provide correct email/password </p>) }
+      {!correct && (<p style={{ "color": "#ff0000" }} >Please provide correct email/password </p>)}
       <Marginer direction="vertical" margin="1em" />
       <SubmitButton onClick={signin}>Login</SubmitButton>
       <Marginer direction="vertical" margin={5} />
@@ -94,7 +95,7 @@ const Login = ({handleLogin}) => {
 
 
 }
-  
+
 
 
 const Dashboard = ({ handleLogin }) => {

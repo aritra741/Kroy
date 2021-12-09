@@ -28,6 +28,7 @@ import AfterPayment from "./components/AfterPayment/AfterPayment";
 import {Electronics} from './components/Collections/Electronics'
 import { Furnitures } from "./components/Collections/Furnitures";
 import { Other } from "./components/Collections/Other";
+import Chat from "./components/Chat/Chat";
 
 const App = () => {
   return (
@@ -51,6 +52,10 @@ const App = () => {
                   <Route
                     path="/electronics"
                     component={Electronics}
+                  />
+                  <Route
+                    path="/chats"
+                    component={Chat}
                   />
                   <Route
                     path="/furnitures"
