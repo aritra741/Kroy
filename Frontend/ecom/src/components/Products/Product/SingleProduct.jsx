@@ -7,6 +7,8 @@ import {useParams} from 'react-router-dom'
 import BidPopUp from "../../accountBox/BidPopUp";
 import {Button} from "../../../components/button"
 import {Navbar} from "../../../components/navbar"
+import UpdateProductPropup from "../../accountBox/UpdateProductPropup";
+import UpdateProductForm from "../../accountBox/UpdateProductForm";
 import MTable from "./MTable";
 const Container = styled.div``;
 
@@ -175,6 +177,8 @@ function SingleProduct(){
   const userID= localStorage.getItem('user')
   const [product, setproduct] = useState([])
   const [BidPopUpOpen, setBidPopUpOpen] = useState(false)
+  const [ProductPopUpOpen, setProductPopUpOpen] = useState(false)
+  
 
   useEffect(() => {
 
@@ -191,6 +195,7 @@ function SingleProduct(){
 
   function onclose() {
     setBidPopUpOpen(false)
+    setProductPopUpOpen(false)
   }
 
   return (
@@ -221,14 +226,33 @@ function SingleProduct(){
             </div>
           ) }
           </Price>
+          { userID==product.customer &&
+          <div onClick={() => {
+            console.log("clicked");
+           setProductPopUpOpen(true);
+          }}>
+          <Button>
+              Update
+            </Button>
+            </div>
+             }
+            { userID==product.customer && <Button>
+              Delete
+            </Button> }
         </InfoContainer>
         { userID==product.customer && <MTable id={id} /> }
+          
       </Wrapper>
 
       <BidPopUp
           open={BidPopUpOpen}
           onClose= {onclose}
           productID= {id} />
+      <UpdateProductPropup
+          open={ProductPopUpOpen}
+          onClose= {onclose}
+          productID= {id} />
+      
     </Container>
   );
 };

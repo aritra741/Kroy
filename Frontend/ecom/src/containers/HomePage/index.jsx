@@ -4,11 +4,8 @@ import { PageContainer } from "../../components/pageContainer";
 import { TopSection } from "./topSection";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 import SingleProduct from "../../components/Products/Product/SingleProduct"
 import { CommonStateContext } from "../../contexts/common";
-import Slider from "react-slick";
 // import Products from "../../components/Products/Products"
 // export function HomePage(props)
 // {
@@ -41,7 +38,7 @@ const settings = {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3
-  };
+};
 
 export function HomePage() {
 
@@ -53,6 +50,24 @@ export function HomePage() {
             const { data } = await axios.get('http://127.0.0.1:8000/store/products')
             setproducts(data)
             console.log(data)
+
+            // var data2 = {"username": "bob_baker","secret": "secret-123-jBj02","email": "b_baker@mail.com","first_name": "Bob","last_name": "Baker","custom_json": { "fav_game": "Candy Crush", "high_score": 2002 }};
+
+            var config2 = {
+                headers: {
+                    'PRIVATE-KEY': '{{dbab5f23-8b77-4ffc-b8c6-6d2894ef1ea0}}'
+                }
+            };
+
+            // const { data2 } = await axios.post(
+            //     'https://api.chatengine.io/users/',
+            //     {
+            //       'username': 'test',
+            //       'secret': '123456'
+            //     },
+            //     config2)
+
+            // console.log()
         }
 
         fetchProducts()
@@ -192,28 +207,28 @@ export function HomePage() {
                 <Navbar useTransparent />
             </TopSection>
             <div className='container'>
-               <Link to="/electronics">
-               <h1 style={{"color": "#fff"}}>
-                    Electronics
-                </h1>
-               </Link>
+                <Link to="/electronics">
+                    <h1 style={{ "color": "#fff" }}>
+                        Electronics
+                    </h1>
+                </Link>
                 {/* <Slider {...settings}> */}
                 <div className="main_content">
                     {listItems1}
                 </div>
                 {/* </Slider> */}
-               <Link to="/furnitures">
-               <h1 style={{"color": "#fff"}}>
-                    Furnitures
-                </h1>
-               </Link>
+                <Link to="/furnitures">
+                    <h1 style={{ "color": "#fff" }}>
+                        Furnitures
+                    </h1>
+                </Link>
                 <div className="main_content">
                     {listItems2}
                 </div>
                 <Link to="/other">
-                <h1 style={{"color": "#fff"}}>
-                    Others
-                </h1>
+                    <h1 style={{ "color": "#fff" }}>
+                        Others
+                    </h1>
                 </Link>
                 <div className="main_content">
                     {listItems5}
