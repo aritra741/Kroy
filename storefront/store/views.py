@@ -8,10 +8,10 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.serializers import Serializer
-from .models import Collection, Customer, Product, Bid, Service
+from .models import Collection, Customer, Product, Bid, Service, ServiceBid
 from django.contrib.auth.decorators import login_required
 from django.db.models.aggregates import Count, Max, Min
-from .serializers import CollectionSerializer,ServiceSerializer, OrderSerializer, ProductSerializer, UserSerializer, UserSerializerWithToken, CustomerSerializer, BidSerializer
+from .serializers import CollectionSerializer, ServiceBidSerializer,ServiceSerializer, OrderSerializer, ProductSerializer, UserSerializer, UserSerializerWithToken, CustomerSerializer, BidSerializer
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -87,6 +87,42 @@ def customer_detail(request, id):
     elif request.method=='DELETE':
         customer.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'POST'])
+def service_bid_list(request):
+    if request.method=='GET':
+        queryset= ServiceBid.objects.select_related('service').all()
+        serializer= ServiceBidSerializer(queryset, many=True)
+        return Response(serializer.data)
+    elif request.method=='POST':
+        serializer= ServiceBidSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def bid_list_for_service(request, id):
+    service= get_object_or_404(Service, id=id)
+    serializer= BidSerializer(service.serviceBids, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def service_bid_detail(request, id):
+    bid= get_object_or_404(Bid, pk=id)
+    if request.method=='GET':
+        serializer= ServiceBidSerializer(bid)
+        return Response(serializer.data)
+    elif request.method=='PUT':
+        serializer= ServiceBidSerializer(bid,data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method=='DELETE':
+        bid.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 @api_view(['GET', 'POST'])
 def bid_list(request):

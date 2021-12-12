@@ -6,7 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 //import  AddProductForm from "./AddProductF";
 import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
-import AddProductForm from "./addProductForm";
+import AddProductForm from "./AddProductForm";
 const styles = (theme) => ({
  paper: {
   "borderRadius": 0

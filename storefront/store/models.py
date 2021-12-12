@@ -46,7 +46,6 @@ class Service(models.Model):
 
     def get_absolute_url(self):
         return reverse("_detail", kwargs={"pk": self.pk})
-
     
 
 class Bid(models.Model):
@@ -56,6 +55,15 @@ class Bid(models.Model):
     customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerBids')
     product= models.ForeignKey(Product, on_delete=CASCADE, null=True, related_name='productBids')
     image= models.ImageField(null=True, blank= True)
+
+class ServiceBid(models.Model):
+    description= models.TextField(null=True)
+    price= models.DecimalField(max_digits=8,decimal_places=2)
+    quantity= models.IntegerField(default=1)
+    customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerServiceBids')
+    service= models.ForeignKey(Service, on_delete=CASCADE, null=True, related_name='serviceBids')
+    image= models.ImageField(null=True, blank= True)
+
 
 class Order(models.Model):
     
