@@ -29,6 +29,7 @@ import {Electronics} from './components/Collections/Electronics'
 import { Furnitures } from "./components/Collections/Furnitures";
 import { Other } from "./components/Collections/Other";
 import Chat from "./components/Chat/Chat";
+import Search from "./components/Search/Search";
 
 const App = () => {
   return (
@@ -53,6 +54,11 @@ const App = () => {
                     path="/electronics"
                     component={Electronics}
                   />
+                  <Route
+                    path="/search/"
+                    component={Search}
+                  />
+                  
                   <Route
                     path="/chats"
                     component={Chat}
