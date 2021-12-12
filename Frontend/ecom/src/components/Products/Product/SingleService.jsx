@@ -10,6 +10,11 @@ import { Navbar } from "../../../components/navbar";
 import MTable from "./MTable";
 import MTableService from "./MTableService";
 import UpdateServicePopup from "../../accountBox/UpdateServicePopup";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import { useHistory } from "react-router-dom";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -177,12 +182,13 @@ function SingleService() {
   const [BidPopUpOpen, setBidPopUpOpen] = useState(false);
   const [ServicePopupOpen, setServicePopupOpen] = useState(false);
   const [deletePopupOpen, setDeletePopupOpen] = useState(false);
+  const history= useHistory()
 
   async function handleDelete(e)
   {
     e.preventDefault()
     const {data}= await axios.delete(`http://127.0.0.1:8000/store/services/${id}`)
-    // history.push("../myproducts")
+    history.push("../myproducts")
   }
 
   useEffect(() => {
@@ -202,6 +208,7 @@ function SingleService() {
   function onclose() {
     setBidPopUpOpen(false);
     setServicePopupOpen(false)
+    setDeletePopupOpen(false)
   }
 
   return (
@@ -240,7 +247,10 @@ function SingleService() {
             </div>
           )}
           {userID == service.customer && 
-          <div>
+          <div onClick={() => {
+            console.log("clicked");
+            setDeletePopupOpen(true);
+          }}>
             <Button>Delete</Button>
           </div>
           }
@@ -255,6 +265,24 @@ function SingleService() {
         serviceID={id}
         nowService={service}
       />
+      <Dialog
+        open={deletePopupOpen}
+        onClose={onclose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Delete this product?
+            </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button onClick={handleDelete}>Yes</button>
+          <button onClick={onclose} autoFocus>
+            No
+          </button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 }

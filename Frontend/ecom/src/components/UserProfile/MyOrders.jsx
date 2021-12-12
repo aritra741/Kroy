@@ -36,8 +36,6 @@ import "../../containers/HomePage/App.css";
 
 export function MyProducts() {
   const [products, setproducts] = useState([]);
-  const [services, setservices] = useState([]);
-  
   const [addProductPopUpOpen, setaddProductPopUpOpen] = useState(false);
   const id = localStorage.getItem("user");
   console.log(localStorage.getItem("user"));
@@ -45,23 +43,13 @@ export function MyProducts() {
   useEffect(() => {
     async function fetchProducts() {
       const { data } = await axios.get(
-        `http://127.0.0.1:8000/store/products/customer/${id}`
+        `http://127.0.0.1:8000/store/bids/customer/${id}`
       );
       setproducts(data);
       console.log(data);
     }
 
-    async function fetchServices() {
-      const { data } = await axios.get(
-        `http://127.0.0.1:8000/store/services/customer/${id}`
-      );
-      setservices(data);
-      console.log(data);
-    }
-
     fetchProducts();
-    fetchServices();
-
   }, []);
 
   function onclose(){
@@ -70,24 +58,6 @@ export function MyProducts() {
 
   const listItems = products.map((item) => (
     <Link to={`/products/${item.id}`}>
-      <div className="card" key={item.id}>
-        <div className="card_img">
-          <img src={"http://127.0.0.1:8000" + item.image} />
-        </div>
-        <div className="card_header">
-          <h2>{item.title}</h2>
-          <p>{item.description}</p>
-          <p className="price">
-            {item.budget}
-            <span></span>
-          </p>
-          <div className="btn">Show Details</div>
-        </div>
-      </div>
-    </Link>
-  ));
-  const listItems2 = services.map((item) => (
-    <Link to={`/services/${item.id}`}>
       <div className="card" key={item.id}>
         <div className="card_img">
           <img src={"http://127.0.0.1:8000" + item.image} />
@@ -123,21 +93,6 @@ export function MyProducts() {
           }
         </h1>
         <div className="main_content">{listItems}</div>
-        <h1 style={{ color: "#fff" }}>
-          My Services{" "}
-          {
-            <div
-              onClick={() => {
-                console.log("clicked");
-                setaddProductPopUpOpen(true);
-                console.log(addProductPopUpOpen);
-              }}
-            >
-              <Button>+ Add</Button>
-            </div>
-          }
-        </h1>
-        <div className="main_content">{listItems2}</div>
       </div>
       <AddProductPopup
           open= {addProductPopUpOpen}
