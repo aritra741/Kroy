@@ -23,7 +23,7 @@ urlpatterns= [
     path('collections/<int:pk>/', view=views.collection_detail), # making sure that the id is an integer
     
     path('servicebids/service/<int:id>/', view=views.bid_list_for_service),
-    path('servicebids/', view=views.services_list),        
+    path('servicebids/', view=views.service_bid_list),        
     path('servicebids/<int:id>/', view=views.service_bid_detail),   
  
     path('bids/product/<int:id>/', view=views.bid_list_for_product),

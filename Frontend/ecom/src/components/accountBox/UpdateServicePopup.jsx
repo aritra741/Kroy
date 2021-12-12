@@ -3,17 +3,17 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-//import  AddProductForm from "./AddProductF";
+//import  UpdateServiceForm from "./AddProductF";
 import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
-import AddProductForm from "./addProductForm";
+import UpdateServiceForm from "./UpdateServiceForm";
 const styles = (theme) => ({
  paper: {
   "borderRadius": 0
   },
 });
 
-class AddProductPopup extends React.Component {
+class UpdateServicePopup extends React.Component {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
@@ -58,7 +58,7 @@ class AddProductPopup extends React.Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <AddProductForm onclose={this.handleClose} />
+            <UpdateServiceForm onclose={this.handleClose} serviceID={this.props.serviceID} nowService={this.props.nowService} />
           </DialogContent>
          
         </Dialog>
@@ -66,4 +66,4 @@ class AddProductPopup extends React.Component {
     );
   }
 }
-export default withStyles(styles, { withTheme: true })(memo(AddProductPopup));
+export default withStyles(styles, { withTheme: true })(memo(UpdateServicePopup));

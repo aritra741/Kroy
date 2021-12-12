@@ -1,19 +1,24 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./styles.css";
 import { Dropdown, DropdownButton } from 'react-bootstrap';
-import axios from 'axios'
-const ServiceBidForm = ({onclose, serviceID}) => {
-  const [selectedFile, setSelectedFile]= useState()
-
-  function changeHandler(event) {
-      setSelectedFile(event.target.files[0]);
+import axios from "axios";
+const UpdateServiceForm = ({onclose, serviceID, nowService}) => {
+  const [selectedFile, setSelectedFile] = useState()
   
-    };
+  function changeHandler(event) {
+    setSelectedFile(event.target.files[0]);
+
+  };
   const [formData, setFormData] = useState({
-    price: "",
-    quantity: "",
-    description: ""
+    title: nowService.title,
+    budget: nowService.budget,
+    quantity: nowService.quantity,
+    description: nowService.description,
+    image: nowService.image
   });
+
+  const history= useHistory()
 
   async function handleSubmission(event) {
 
@@ -23,18 +28,19 @@ const ServiceBidForm = ({onclose, serviceID}) => {
     console.log("submit clicked")
 
     Data.append("image", selectedFile);
+    Data.append("title", formData.title)
     Data.append("description", formData.description)
-    Data.append("price", formData.price)
+    Data.append("budget", formData.budget)
     Data.append("quantity", formData.quantity)
     Data.append("customer", localStorage.getItem('user'))
-    Data.append("service", serviceID)
-    
       
-    const result= await axios.post("http://localhost:8000/store/servicebids/",
+    const result= await axios.put(`http://localhost:8000/store/services/${serviceID}/`,
       Data
     )
       .then((result) => {
         console.log("Success:", result);
+        let newUrl= `../products/${serviceID}/`
+        window.location.reload(false);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -43,15 +49,14 @@ const ServiceBidForm = ({onclose, serviceID}) => {
       console.log(result)
       onclose()
   }
-
   const updateFormData = event =>
     setFormData({
       ...formData,
       [event.target.name]: event.target.value
     });
 
-    
-  const { price, quantity, description } = formData;
+
+  const { title, budget, quantity, description } = formData;
 
   return (
     <form onSubmit={handleSubmission}>
@@ -67,11 +72,29 @@ const ServiceBidForm = ({onclose, serviceID}) => {
     "border": "1px solid #e4e6e8",
     "transition": "0.1s ease"
       }}
-        value={price}
+        value={title}
         onChange={e => updateFormData(e)}
-        placeholder="price"
         type="text"
-        name="price"
+        name="title"
+        required
+      />
+      <input
+      style={{
+        "display": "block",
+    "min-width": "90%",
+    "margin": "1em",
+    "padding": "1em",
+    "width": "24em",
+    "border-radius": "8px",
+    "border-style": "none",
+    "border": "1px solid #e4e6e8",
+    "transition": "0.1s ease"
+      }}
+        value={budget}
+        onChange={e => updateFormData(e)}
+        placeholder="budget"
+        type="text"
+        name="budget"
         required
       />
       <input
@@ -120,12 +143,12 @@ const ServiceBidForm = ({onclose, serviceID}) => {
         required
       /> */}
 
-{/* <DropdownButton id="dropdown-basic-button" title="Dropdown button">
+      {/* <DropdownButton id="dropdown-basic-button" title="Dropdown button">
   <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
   <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
   <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
 </DropdownButton> */}
-{/* 
+      {/* 
 <Dropdown>
   <Dropdown.Toggle variant="success" id="dropdown-basic">
     Dropdown Button
@@ -137,7 +160,7 @@ const ServiceBidForm = ({onclose, serviceID}) => {
   </Dropdown.Menu>
 </Dropdown> */}
 
-<div className="upload">
+      <div className="upload">
         <input
         style={{
           "display": "block",
@@ -150,15 +173,15 @@ const ServiceBidForm = ({onclose, serviceID}) => {
       "border": "1px solid #e4e6e8",
       "transition": "0.1s ease"
         }}
-        type="file" name="file" className = "upload" onChange={changeHandler} />
-        </div>
-      
-        <br></br>
+        type="file" name="file" className="upload" onChange={changeHandler} />
+      </div>
 
+      <br></br>
+        
       <button type="submit">Submit</button>
     </form>
   );
 };
 
 
-export default  ServiceBidForm;
+export default UpdateServiceForm;

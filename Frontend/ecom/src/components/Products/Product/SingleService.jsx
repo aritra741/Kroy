@@ -1,20 +1,21 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
-import axios from 'axios'
-import {useParams} from 'react-router-dom'
-import BidPopUp from "../../accountBox/BidPopUp";
-import {Button} from "../../../components/button"
-import {Navbar} from "../../../components/navbar"
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import ServiceBidPopUp from "../../accountBox/ServiceBidPopUp";
+import { Button } from "../../../components/button";
+import { Navbar } from "../../../components/navbar";
 import MTable from "./MTable";
+import MTableService from "./MTableService";
+import UpdateServicePopup from "../../accountBox/UpdateServicePopup";
 const Container = styled.div``;
-
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -112,8 +113,8 @@ const qwerty = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
-  &:hover{
-      background-color: #f8f4f4;
+  &:hover {
+    background-color: #f8f4f4;
   }
 `;
 
@@ -144,9 +145,9 @@ const styles = (theme) => ({
   heading: {
     marginTop: "8px",
     float: "left",
-    fontSize: "15px"
+    fontSize: "15px",
   },
-  collapse:{
+  collapse: {
     marginTop: "10px",
     float: "right",
   },
@@ -165,72 +166,86 @@ const styles = (theme) => ({
     marginLeft: "18px",
     fontSize: "12px",
   },
-  mainTitle :{
-    marginLeft: "20px"
-  }
+  mainTitle: {
+    marginLeft: "20px",
+  },
 });
-function SingleService(){
-
-  const {id}= useParams()
-  const userID= localStorage.getItem('user')
-  const [service, setservice] = useState([])
-  const [BidPopUpOpen, setBidPopUpOpen] = useState(false)
+function SingleService() {
+  const { id } = useParams();
+  const userID = localStorage.getItem("user");
+  const [service, setservice] = useState([]);
+  const [BidPopUpOpen, setBidPopUpOpen] = useState(false);
+  const [ServicePopupOpen, setServicePopupOpen] = useState(false);
+  const [deletePopupOpen, setDeletePopupOpen] = useState(true);
 
   useEffect(() => {
+    console.log("okkkkkk ");
+    console.log(id);
 
-      console.log("item ")
-      console.log(id)
-      
-      async function fetchService(){
-          const {data}= await axios.get(`http://127.0.0.1:8000/store/services/${id}`)
-          setservice(data)
-      }
+    async function fetchService() {
+      const { data } = await axios.get(
+        `http://127.0.0.1:8000/store/services/${id}`
+      );
+      setservice(data);
+    }
 
-      fetchService()
-  }, [])
+    fetchService();
+  }, []);
 
   function onclose() {
-    setBidPopUpOpen(false)
+    setBidPopUpOpen(false);
+    setServicePopupOpen(false)
   }
 
   return (
-      
     <Container>
-       <Navbar/>
+      <Navbar />
       <Wrapper>
         <ImgContainer>
-          <Image src={'http://127.0.0.1:8000'+service.image} />
+          <Image src={"http://127.0.0.1:8000" + service.image} />
         </ImgContainer>
         <InfoContainer>
           <Title>{service.title}</Title>
-          <Desc>
-            {service.description}
-          </Desc>
-          <Price>{product.budget}</Price>
+          <Desc>{service.description}</Desc>
+          <Price>{service.budget}</Price>
           <div></div>
           <Price>
-          { userID!=product.customer && (
-            <div onClick={() => {
-              console.log("clicked");
-             setBidPopUpOpen(true);
-             console.log(BidPopUpOpen);
-            }}>
-              <Button>
-              Bid for this item
-            </Button>
-            </div>
-          ) }
+            {userID != service.customer && (
+              <div
+                onClick={() => {
+                  console.log("clicked");
+                  setBidPopUpOpen(true);
+                  console.log(BidPopUpOpen);
+                }}
+              >
+                <Button>Bid for this item</Button>
+              </div>
+            )}
           </Price>
+          {userID == service.customer && (
+            <div
+              onClick={() => {
+                console.log("clicked");
+                setServicePopupOpen(true);
+              }}
+            >
+              <Button>Update</Button>
+            </div>
+          )}
+          {userID == service.customer && <Button>Delete</Button>}
         </InfoContainer>
-        { userID==service.customer && <MTable id={id} /> }
+        {userID == service.customer && <MTableService id={id} />}
       </Wrapper>
 
-      <BidPopUp
-          open={BidPopUpOpen}
-          onClose= {onclose}
-          productID= {id} />
+      <ServiceBidPopUp open={BidPopUpOpen} onClose={onclose} serviceID={id} />
+      <UpdateServicePopup
+        open={ServicePopupOpen}
+        onClose={onclose}
+        serviceID={id}
+        nowService={service}
+      />
     </Container>
   );
-};
+}
 
 export default SingleService;

@@ -30,6 +30,7 @@ import { Furnitures } from "./components/Collections/Furnitures";
 import { Other } from "./components/Collections/Other";
 import Chat from "./components/Chat/Chat";
 import Search from "./components/Search/Search";
+import SingleService from "./components/Products/Product/SingleService";
 
 const App = () => {
   return (
@@ -103,12 +104,15 @@ const App = () => {
                   window.location = "http://127.0.0.1:3000/"} />
                   
                   <Route path="/products/:id" component={SingleProduct} />
+                  <Route path="/services/:id" component={SingleService} />
                   <Route
                     path="/customer/access/:action"
                     exact
                     component={CustomerAccessPage}
                   />
                    <Route
+
+                   
                     path="/upload"
                     component={Upload}
                   />

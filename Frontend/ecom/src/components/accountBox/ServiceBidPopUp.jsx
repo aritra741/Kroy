@@ -6,7 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 //import  AddProductForm from "./AddProductF";
 import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
-import ServiceBidForm from "./BidForm";
+import ServiceBidForm from "./ServiceBidForm";
 const styles = (theme) => ({
  paper: {
   "borderRadius": 0
@@ -66,4 +66,4 @@ class ServiceBidPopUp extends React.Component {
     );
   }
 }
-export default withStyles(styles, { withTheme: true })(memo(BidPopUp));
+export default withStyles(styles, { withTheme: true })(memo(ServiceBidPopUp));

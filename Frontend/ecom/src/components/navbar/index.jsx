@@ -65,8 +65,8 @@ export function Navbar(props) {
         e.preventDefault()
           history.push("/search?query="+query)
       }} >
-      <FontAwesomeIcon icon={faSearch} color="#fff"></FontAwesomeIcon>
-        <input onChange={(e)=>{setQuery(e.target.value)}} value={query} style={{"backgroundColor": "#000", "color": "#fff", "paddingLeft": "10px"}} type="text" placeholder="         Search..." />
+      <FontAwesomeIcon icon={faSearch} color="#fff"  useTransparent={useTransparent}></FontAwesomeIcon>
+        <input onChange={(e)=>{setQuery(e.target.value)}} value={query} type="text" placeholder="         Search..." />
       </Form>
         <Marginer direction="horizontal" margin={16} />
         { localStorage.getItem('user')==null && (<Link to="/customer/access/signin">
