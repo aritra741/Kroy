@@ -17,7 +17,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-
+import { useHistory } from "react-router-dom";
 const Container = styled.div``;
 
 toast.configure()
@@ -182,12 +182,13 @@ const styles = (theme) => ({
 });
 function SingleProduct(){
 
+  const history= useHistory()
   const {id}= useParams()
   const userID= localStorage.getItem('user')
   const [product, setproduct] = useState([])
   const [BidPopUpOpen, setBidPopUpOpen] = useState(false)
   const [ProductPopUpOpen, setProductPopUpOpen] = useState(false)
-  const [deletePopupOpen, setDeletePopupOpen]= useState(true)
+  const [deletePopupOpen, setDeletePopupOpen]= useState(false)
 
   useEffect(() => {
 
@@ -202,6 +203,13 @@ function SingleProduct(){
       fetchProduct()
   }, [])
 
+  async function handleDelete(e)
+  {
+    e.preventDefault()
+    const {data}= await axios.delete(`http://127.0.0.1:8000/store/products/${id}`)
+    history.push("../myproducts")
+  }
+
   function onclose() {
 
     if( BidPopUpOpen==true )
@@ -211,6 +219,7 @@ function SingleProduct(){
 
     setBidPopUpOpen(false)
     setProductPopUpOpen(false)
+    setDeletePopupOpen(false)
   }
 
   return (
@@ -251,9 +260,15 @@ function SingleProduct(){
             </Button>
             </div>
              }
-            { userID==product.customer && <Button>
+            { userID==product.customer && 
+            <div onClick={() => {
+              console.log("clicked");
+             setDeletePopupOpen(true);
+            }} >
+              <Button>
               Delete
-            </Button> }
+            </Button>
+            </div> }
         </InfoContainer>
         { userID==product.customer && <MTable id={id} /> }
           
@@ -279,10 +294,10 @@ function SingleProduct(){
             </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onclose}>YES</Button>
-          <Button onClick={onclose} autoFocus>
-            NO
-          </Button>
+          <button onClick={handleDelete}>Yes</button>
+          <button onClick={onclose} autoFocus>
+            No
+          </button>
         </DialogActions>
       </Dialog>
       

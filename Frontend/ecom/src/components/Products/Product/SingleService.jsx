@@ -176,7 +176,14 @@ function SingleService() {
   const [service, setservice] = useState([]);
   const [BidPopUpOpen, setBidPopUpOpen] = useState(false);
   const [ServicePopupOpen, setServicePopupOpen] = useState(false);
-  const [deletePopupOpen, setDeletePopupOpen] = useState(true);
+  const [deletePopupOpen, setDeletePopupOpen] = useState(false);
+
+  async function handleDelete(e)
+  {
+    e.preventDefault()
+    const {data}= await axios.delete(`http://127.0.0.1:8000/store/services/${id}`)
+    // history.push("../myproducts")
+  }
 
   useEffect(() => {
     console.log("okkkkkk ");
@@ -232,7 +239,11 @@ function SingleService() {
               <Button>Update</Button>
             </div>
           )}
-          {userID == service.customer && <Button>Delete</Button>}
+          {userID == service.customer && 
+          <div>
+            <Button>Delete</Button>
+          </div>
+          }
         </InfoContainer>
         {userID == service.customer && <MTableService id={id} />}
       </Wrapper>
