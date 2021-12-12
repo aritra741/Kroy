@@ -1,5 +1,6 @@
 import collections
 from os import name
+from store.models import Service
 from django.db.models import fields
 from rest_framework import serializers
 from decimal import Decimal
@@ -67,6 +68,10 @@ class OrderSerializer(serializers.ModelSerializer):
         model= Order
         fields= '__all__'
 
+class ServiceSerializer(serializers.ModelSerializer):
+        class Meta:
+             model= Service
+             fields= ['id', 'title', 'description', 'budget', 'quantity', 'customer', 'image']
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -85,3 +90,8 @@ class ProductSerializer(serializers.ModelSerializer):
     # def withTax(self, product: Product):
     #     return product.budget*Decimal(1.1)
     # This is for adding customized stuff
+
+    class ServiceSerializer(serializers.ModelSerializer):
+        class Meta:
+             model= Service
+             fields= ['id', 'title', 'description', 'budget', 'quantity', 'customer', 'image']

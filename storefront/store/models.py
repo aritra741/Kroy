@@ -26,6 +26,27 @@ class Product(models.Model):
     collection= models.ForeignKey(Collection, on_delete=PROTECT, related_name='products') # The product won't be deleted even if we accidentally delete a collection
     customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerProducts')
     image= models.ImageField(null=True, blank= True)
+
+class Service(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField(null = True)
+    budget= models.DecimalField(max_digits=8,decimal_places=2)
+    last_update= models.DateTimeField(auto_now=True)
+    quantity= models.IntegerField(null = True)
+    customer= models.ForeignKey(Customer, on_delete=CASCADE, null=True, related_name='customerServices')
+    image= models.ImageField(null=True, blank= True)
+    
+
+    class Meta:
+        verbose_name = ("")
+        verbose_name_plural = ("s")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("_detail", kwargs={"pk": self.pk})
+
     
 
 class Bid(models.Model):

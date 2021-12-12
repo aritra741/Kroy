@@ -8,10 +8,10 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.serializers import Serializer
-from .models import Collection, Customer, Product, Bid
+from .models import Collection, Customer, Product, Bid, Service
 from django.contrib.auth.decorators import login_required
 from django.db.models.aggregates import Count, Max, Min
-from .serializers import CollectionSerializer, OrderSerializer, ProductSerializer, UserSerializer, UserSerializerWithToken, CustomerSerializer, BidSerializer
+from .serializers import CollectionSerializer,ServiceSerializer, OrderSerializer, ProductSerializer, UserSerializer, UserSerializerWithToken, CustomerSerializer, BidSerializer
 from django.contrib.auth.models import User
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
@@ -146,12 +146,34 @@ def product_list(request):
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET', 'POST'])
+def services_list(request):
+    if request.method=='GET':
+        queryset= Service.objects.all()
+        serializer= ServiceSerializer(queryset, many=True)
+        return Response(serializer.data)
+    elif request.method=='POST':
+        serializer= ServiceSerializer(data=request.data)
+        print(request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 @api_view(['GET'])
 def get_product_by_customer(request, id):
     customer= get_object_or_404(Customer, pk=id)
     serializer= ProductSerializer(customer.customerProducts, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def get_services_by_customer(request, id):
+    customer= get_object_or_404(Customer, pk=id)
+    serializer= ServiceSerializer(customer.customerServices, many=True)
+    return Response(serializer.data)
+
 
 @api_view(['GET'])
 def get_product_by_collection(request, id):
@@ -175,6 +197,21 @@ def product_detail(request, id):
         if product.orderitems.count()>0: # Kono orderitem e ei product achhe kina
             return Response(status.HTTP_405_METHOD_NOT_ALLOWED)
         product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def services_detail(request, id):
+    services= get_object_or_404(Service, pk=id)
+    if request.method=='GET':
+        serializer= ServiceSerializer(services)
+        return Response(serializer.data)
+    elif request.method=='PUT':
+        serializer= ServiceSerializer(services,data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    elif request.method=='DELETE':
+        services.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 @api_view(['GET', 'POST'])

@@ -4,8 +4,6 @@ import { PageContainer } from "../../components/pageContainer";
 import { TopSection } from "./topSection";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
 import SingleProduct from "../../components/Products/Product/SingleProduct"
 import { CommonStateContext } from "../../contexts/common";
 import Slider from "react-slick";
@@ -47,6 +45,7 @@ export function HomePage() {
 
     const [products, setproducts] = useState([])
     const [collection, setcollection] = useState([])
+    const [services, setservices] = useState([])
     useEffect(() => {
 
         async function fetchProducts() {
@@ -64,6 +63,17 @@ export function HomePage() {
         }
 
         fetchCollection()
+
+        async function fetchServices() {
+            console.log("service")
+            const { data } = await axios.get('http://127.0.0.1:8000/store/services')
+            setservices(data)
+
+        }
+
+        fetchServices()
+
+
     }, [])
 
 
@@ -159,6 +169,7 @@ export function HomePage() {
             )
     }
 
+
     );
 
     const listItems5 = products.map((item) => {
@@ -180,6 +191,31 @@ export function HomePage() {
                     </div>
                 </Link>
             )
+    }
+    );
+
+    const serviceItem1 = services.map ((item) => {
+
+        console.log("service")
+        return (
+            <Link to={`/services/${item.id}`} >
+                <div className="card" key={item.id}>
+
+                    <div className="card_img">
+                        <img src={'http://127.0.0.1:8000' + item.image} />
+                    </div>
+                    <div className="card_header">
+                        <h2>{item.title}</h2>
+                        <p>{item.description}</p>
+                        <p className="price">{item.budget}<span></span></p>
+                        <div className="btn">Show Details</div>
+                    </div>
+                </div>
+            </Link>
+
+        
+        )
+
     }
 
     );
@@ -212,11 +248,12 @@ export function HomePage() {
                 </div>
                 <Link to="/other">
                 <h1 style={{"color": "#fff"}}>
-                    Others
+                   Services
                 </h1>
                 </Link>
                 <div className="main_content">
-                    {listItems5}
+                    fgdgdfgdfgdfg
+                    {serviceItem1}
                 </div>
                 <Footer>
                 </Footer>

@@ -6,14 +6,14 @@ import DialogContent from "@material-ui/core/DialogContent";
 //import  AddProductForm from "./AddProductF";
 import { withStyles } from "@material-ui/core";
 import { memo } from 'react';
-import AddProductForm from "./addProductForm";
+import ServiceBidForm from "./BidForm";
 const styles = (theme) => ({
  paper: {
   "borderRadius": 0
   },
 });
 
-class AddProductPopup extends React.Component {
+class ServiceBidPopUp extends React.Component {
   constructor(props) {
     super(props);
     this.formRef = React.createRef();
@@ -58,7 +58,7 @@ class AddProductPopup extends React.Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <AddProductForm onclose={this.handleClose} />
+            <ServiceBidForm onclose={this.handleClose} serviceID= {this.props.serviceID}/>
           </DialogContent>
          
         </Dialog>
@@ -66,4 +66,4 @@ class AddProductPopup extends React.Component {
     );
   }
 }
-export default withStyles(styles, { withTheme: true })(memo(AddProductPopup));
+export default withStyles(styles, { withTheme: true })(memo(BidPopUp));
