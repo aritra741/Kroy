@@ -6,6 +6,12 @@ import { Link, Route, Switch } from "react-router-dom";
 import { Marginer } from "../marginer";
 import { ShoppingCart } from "@material-ui/icons";
 import { IconButton, Badge } from "@material-ui/core";
+import { Form } from "react-bootstrap";
+import { CommonStateContext } from "../../contexts/common";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { fas, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
 const NavbarContainer = styled.div`
   width: 100%;
@@ -45,12 +51,23 @@ const Seperator = styled.div`
 
 export function Navbar(props) {
   const { useTransparent } = props;
+  const [query,setQuery]= useState("")
+  const history= useHistory()
+
   return (
     <NavbarContainer useTransparent={useTransparent}>
       <Link to="/">
       <BrandLogo />
       </Link>
       <AccessibilityContainer>
+      <Marginer direction="horizontal" margin={16} />
+      <Form onSubmit={(e)=>{
+        e.preventDefault()
+          history.push("/search?query="+query)
+      }} >
+      <FontAwesomeIcon icon={faSearch} color="#fff"></FontAwesomeIcon>
+        <input onChange={(e)=>{setQuery(e.target.value)}} value={query} style={{"backgroundColor": "#000", "color": "#fff", "paddingLeft": "10px"}} type="text" placeholder="         Search..." />
+      </Form>
         <Marginer direction="horizontal" margin={16} />
         { localStorage.getItem('user')==null && (<Link to="/customer/access/signin">
           <Button size={19}> Login </Button>

@@ -7,9 +7,20 @@ import {useParams} from 'react-router-dom'
 import BidPopUp from "../../accountBox/BidPopUp";
 import {Button} from "../../../components/button"
 import {Navbar} from "../../../components/navbar"
+import UpdateProductPropup from "../../accountBox/UpdateProductPropup";
+import UpdateProductForm from "../../accountBox/UpdateProductForm";
 import MTable from "./MTable";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
 const Container = styled.div``;
 
+toast.configure()
 
 const Wrapper = styled.div`
   padding: 50px;
@@ -175,6 +186,8 @@ function SingleProduct(){
   const userID= localStorage.getItem('user')
   const [product, setproduct] = useState([])
   const [BidPopUpOpen, setBidPopUpOpen] = useState(false)
+  const [ProductPopUpOpen, setProductPopUpOpen] = useState(false)
+  const [deletePopupOpen, setDeletePopupOpen]= useState(true)
 
   useEffect(() => {
 
@@ -190,7 +203,14 @@ function SingleProduct(){
   }, [])
 
   function onclose() {
+
+    if( BidPopUpOpen==true )
+    {
+      toast.success("Bid added successfully", {position:toast.POSITION.TOP_CENTER})
+    }
+
     setBidPopUpOpen(false)
+    setProductPopUpOpen(false)
   }
 
   return (
@@ -221,14 +241,51 @@ function SingleProduct(){
             </div>
           ) }
           </Price>
+          { userID==product.customer &&
+          <div onClick={() => {
+            console.log("clicked");
+           setProductPopUpOpen(true);
+          }}>
+          <Button>
+              Update
+            </Button>
+            </div>
+             }
+            { userID==product.customer && <Button>
+              Delete
+            </Button> }
         </InfoContainer>
         { userID==product.customer && <MTable id={id} /> }
+          
       </Wrapper>
 
       <BidPopUp
           open={BidPopUpOpen}
           onClose= {onclose}
           productID= {id} />
+      <UpdateProductPropup
+          open={ProductPopUpOpen}
+          onClose= {onclose}
+          productID= {id} />
+      <Dialog
+        open={deletePopupOpen}
+        onClose={onclose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Delete this product?
+            </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onclose}>YES</Button>
+          <Button onClick={onclose} autoFocus>
+            NO
+          </Button>
+        </DialogActions>
+      </Dialog>
+      
     </Container>
   );
 };

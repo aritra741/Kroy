@@ -4,9 +4,13 @@ import { PageContainer } from "../../components/pageContainer";
 import { TopSection } from "./topSection";
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { useHistory } from "react-router-dom";
 import SingleProduct from "../../components/Products/Product/SingleProduct"
 import { CommonStateContext } from "../../contexts/common";
-import Slider from "react-slick";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSort } from '@fortawesome/free-solid-svg-icons'
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 // import Products from "../../components/Products/Products"
 // export function HomePage(props)
 // {
@@ -39,19 +43,44 @@ const settings = {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3
-  };
+};
 
 export function HomePage() {
-
+    
+    const options = [
+        'Sort by newest', 'Sort by oldest', 'Sort by budget (ascending)', 'Sort by budget (descending)'
+      ];
+    const defaultOption = options[0];
+    const [initial, setinitial] = useState([])
     const [products, setproducts] = useState([])
     const [collection, setcollection] = useState([])
     const [services, setservices] = useState([])
+    let history= useHistory()
     useEffect(() => {
 
         async function fetchProducts() {
             const { data } = await axios.get('http://127.0.0.1:8000/store/products')
             setproducts(data)
+            setinitial(data)
             console.log(data)
+
+            // var data2 = {"username": "bob_baker","secret": "secret-123-jBj02","email": "b_baker@mail.com","first_name": "Bob","last_name": "Baker","custom_json": { "fav_game": "Candy Crush", "high_score": 2002 }};
+
+            var config2 = {
+                headers: {
+                    'PRIVATE-KEY': '{{dbab5f23-8b77-4ffc-b8c6-6d2894ef1ea0}}'
+                }
+            };
+
+            // const { data2 } = await axios.post(
+            //     'https://api.chatengine.io/users/',
+            //     {
+            //       'username': 'test',
+            //       'secret': '123456'
+            //     },
+            //     config2)
+
+            // console.log()
         }
 
         fetchProducts()
@@ -76,7 +105,29 @@ export function HomePage() {
 
     }, [])
 
-
+    function handleSort(x){
+        if(x==0)
+            setproducts(initial)
+        else if(x==1)
+        {
+            let arr= initial
+            arr.reverse()
+            setproducts(arr)
+        }
+        else if(x==2)
+        {
+            let arr= products
+            arr.sort( function(a,b){return a.budget-b.budget} )
+            setproducts(arr)
+        }
+        else
+        {
+            let arr= products
+            arr.sort( function(a,b){return b.budget-a.budget} )
+            setproducts(arr)
+        }
+        
+    }
 
     const listItems1 = products.map((item) => {
         if (item.collection == 1)
@@ -228,21 +279,25 @@ export function HomePage() {
                 <Navbar useTransparent />
             </TopSection>
             <div className='container'>
-               <Link to="/electronics">
-               <h1 style={{"color": "#fff"}}>
-                    Electronics
-                </h1>
-               </Link>
+                <Link to="/electronics">
+                    <h1  style={{ "color": "#fff" }}>
+                        Electronics
+                    </h1>
+                </Link>
                 {/* <Slider {...settings}> */}
+                {/* <div><h1>
+                    <FontAwesomeIcon icon={faSort} color="#fff"></FontAwesomeIcon>
+                    <Dropdown options={options} onChange={()=>{}} value={defaultOption} placeholder="Select an option" />;
+                    </h1></div> */}
                 <div className="main_content">
                     {listItems1}
                 </div>
                 {/* </Slider> */}
-               <Link to="/furnitures">
-               <h1 style={{"color": "#fff"}}>
-                    Furnitures
-                </h1>
-               </Link>
+                <Link to="/furnitures">
+                    <h1 style={{ "color": "#fff" }}>
+                        Furnitures
+                    </h1>
+                </Link>
                 <div className="main_content">
                     {listItems2}
                 </div>
