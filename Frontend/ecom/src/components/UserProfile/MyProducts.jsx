@@ -20,6 +20,7 @@ import SingleProduct from "../../components/Products/Product/SingleProduct";
 // }
 import BidPopUp from "../accountBox/BidPopUp";
 import AddProductPopup from "../accountBox/addProductPopup"
+import AddServicePopup from "../accountBox/addServicePopup"
 import React from "react";
 import "../../containers/HomePage/App.css";
 
@@ -39,6 +40,7 @@ export function MyProducts() {
   const [services, setservices] = useState([]);
   
   const [addProductPopUpOpen, setaddProductPopUpOpen] = useState(false);
+  const [addServicePopUpOpen, setaddServicePopUpOpen] = useState(false);
   const id = localStorage.getItem("user");
   console.log(localStorage.getItem("user"));
 
@@ -67,6 +69,11 @@ export function MyProducts() {
   function onclose(){
     setaddProductPopUpOpen(false)
   }
+
+  function oncloseService(){
+    setaddServicePopUpOpen(false)
+  }
+
 
   const listItems = products.map((item) => (
     <Link to={`/products/${item.id}`}>
@@ -129,8 +136,8 @@ export function MyProducts() {
             <div
               onClick={() => {
                 console.log("clicked");
-                setaddProductPopUpOpen(true);
-                console.log(addProductPopUpOpen);
+                setaddServicePopUpOpen(true);
+                console.log(addServicePopUpOpen);
               }}
             >
               <Button>+ Add</Button>
@@ -139,9 +146,9 @@ export function MyProducts() {
         </h1>
         <div className="main_content">{listItems2}</div>
       </div>
-      <AddProductPopup
-          open= {addProductPopUpOpen}
-          onClose= {onclose}
+      <AddServicePopup
+          open= {addServicePopUpOpen}
+          onClose= {oncloseService}
         />
     </PageContainer>
   );
