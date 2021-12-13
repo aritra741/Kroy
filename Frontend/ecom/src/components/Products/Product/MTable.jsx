@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   tableContainer: {
     borderRadius: 15,
     margin: "10px 10px",
-    maxWidth: 450,
+    maxWidth: 600,
   },
   tableHeaderCell: {
     fontWeight: "bold",
@@ -103,6 +103,8 @@ function MTable({id}) {
             <TableCell className={classes.tableHeaderCell}>Quantity</TableCell>
             <TableCell className={classes.tableHeaderCell}>Image</TableCell>
             <TableCell className={classes.tableHeaderCell}>Action</TableCell>
+            <TableCell className={classes.tableHeaderCell}>Chat</TableCell>
+            
           </TableRow>
         </TableHead>
         <TableBody>
@@ -127,6 +129,17 @@ function MTable({id}) {
                    }}>
                  <Button>
                    Buy
+                 </Button>
+                   </div>
+
+              </TableCell>
+              <TableCell>
+  
+                 <div onClick={()=>{
+                   history.push("../chats");
+                   }}>
+                 <Button>
+                   Chat
                  </Button>
                    </div>
 

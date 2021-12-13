@@ -307,7 +307,6 @@ export function HomePage() {
                 </h1>
                 </Link>
                 <div className="main_content">
-                    fgdgdfgdfgdfg
                     {serviceItem1}
                 </div>
                 <Footer>

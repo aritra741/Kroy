@@ -146,6 +146,10 @@ export function MyProducts() {
         </h1>
         <div className="main_content">{listItems2}</div>
       </div>
+      <AddProductPopup
+          open= {addProductPopUpOpen}
+          onClose= {onclose}
+        />
       <AddServicePopup
           open= {addServicePopUpOpen}
           onClose= {oncloseService}
