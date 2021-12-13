@@ -64,9 +64,9 @@ export function TopSection(props) {
             <BrandLogo logoSize ={100} textSize= {50}> </BrandLogo>
             <SloganText>Buy your items efficiently!</SloganText>
             <Marginer direction="vertical" margin = {15}/>
-            <Link to="/customer/access/signup">
+            { localStorage.getItem('user')==null && (<Link to="/customer/access/signup">
             <Button>Join Now</Button>
-            </Link>
+            </Link>) }
           </LogoContainer>
           <StandoutImage>
             <img src={IllusImg} alt="illus" />
