@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import "./styles.css";
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 import axios from "axios";
-const UpdateProductForm = ({onclose, productID}) => {
+const UpdateProductForm = ({onclose, productID, nowProduct}) => {
   const [selectedFile, setSelectedFile] = useState()
   const [collection, setcollection] = useState("Electronics")
   
@@ -12,11 +12,11 @@ const UpdateProductForm = ({onclose, productID}) => {
 
   };
   const [formData, setFormData] = useState({
-    title: "",
-    budget: "",
-    quantity: "",
-    description: "",
-    image: ""
+    title: nowProduct.title,
+    budget: nowProduct.budget,
+    quantity: nowProduct.quantity,
+    description: nowProduct.description,
+    image: nowProduct.image
   });
 
   const history= useHistory()
@@ -89,7 +89,7 @@ const UpdateProductForm = ({onclose, productID}) => {
       }}
         value={title}
         onChange={e => updateFormData(e)}
-        placeholder="title"
+        placeholder={nowProduct.title}
         type="text"
         name="title"
         required
@@ -108,7 +108,7 @@ const UpdateProductForm = ({onclose, productID}) => {
       }}
         value={budget}
         onChange={e => updateFormData(e)}
-        placeholder="budget"
+        placeholder={nowProduct.budget}
         type="text"
         name="budget"
         required
@@ -127,7 +127,7 @@ const UpdateProductForm = ({onclose, productID}) => {
       }}
         value={quantity}
         onChange={e => updateFormData(e)}
-        placeholder="quantity"
+        placeholder={nowProduct.quantity}
         type="text"
         name="quantity"
         required
@@ -146,7 +146,7 @@ const UpdateProductForm = ({onclose, productID}) => {
       }}
         value={description}
         onChange={e => updateFormData(e)}
-        placeholder="description"
+        placeholder={nowProduct.description}
         type="text"
         name="description"
         required

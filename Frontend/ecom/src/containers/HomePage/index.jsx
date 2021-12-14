@@ -303,6 +303,14 @@ export function HomePage() {
                 </div>
                 <Link to="/other">
                 <h1 style={{"color": "#fff"}}>
+                   Other
+                </h1>
+                </Link>
+                <div className="main_content">
+                    {listItems5}
+                </div>
+                <Link to="/other">
+                <h1 style={{"color": "#fff"}}>
                    Services
                 </h1>
                 </Link>

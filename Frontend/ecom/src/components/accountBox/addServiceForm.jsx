@@ -45,6 +45,7 @@ const AddServiceForm = ({onclose}) => {
 
       console.log(result)
       onclose()
+      window.location.reload(false);
   }
   const updateFormData = event =>
     setFormData({

@@ -281,7 +281,9 @@ function SingleProduct(){
       <UpdateProductPropup
           open={ProductPopUpOpen}
           onClose= {onclose}
-          productID= {id} />
+          productID= {id}
+          nowProduct= {product}
+          />
       <Dialog
         open={deletePopupOpen}
         onClose={onclose}

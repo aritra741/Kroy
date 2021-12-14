@@ -58,7 +58,7 @@ class UpdateProductPopup extends React.Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogContent>
-            <UpdateProductForm onclose={this.handleClose} productID={this.props.productID} />
+            <UpdateProductForm onclose={this.handleClose} productID={this.props.productID} nowProduct={this.props.nowProduct} />
           </DialogContent>
          
         </Dialog>

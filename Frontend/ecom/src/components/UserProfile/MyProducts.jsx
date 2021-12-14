@@ -6,6 +6,7 @@ import { TopSection } from "../../containers/HomePage/topSection";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button } from "../button";
+import { Footer } from "../../components/Footer"
 import SingleProduct from "../../components/Products/Product/SingleProduct";
 // import Products from "../../components/Products/Products"
 // export function HomePage(props)
@@ -145,6 +146,7 @@ export function MyProducts() {
           }
         </h1>
         <div className="main_content">{listItems2}</div>
+        <Footer></Footer>
       </div>
       <AddProductPopup
           open= {addProductPopUpOpen}
@@ -154,6 +156,7 @@ export function MyProducts() {
           open= {addServicePopUpOpen}
           onClose= {oncloseService}
         />
+        
     </PageContainer>
   );
 }
