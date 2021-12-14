@@ -131,7 +131,7 @@ node app.js
 
 <p align="center" >
 
-<img src="staticfiles/Homepage1.png" height = "400"/> </p>
+<img src="staticFiles/Homepage1.png" height = "400"/> </p>
 
 
 ##  Authors
