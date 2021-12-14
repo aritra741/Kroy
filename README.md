@@ -1,5 +1,5 @@
 
-#  KROY: An efficient way to buy
+#  Kroy: An efficient way to buy
 
 <p align=center>
 
@@ -131,7 +131,29 @@ node app.js
 
 <p align="center" >
 
-<img src="staticFiles/Homepage1.png" height = "400"/> </p>
+<img src="staticFiles/Homepage1.PNG" height = "400"/> </p>
+<img src="staticFiles/Homepage2.PNG" height = "400"/> </p>
+<img src="staticFiles/Homepage3.PNG" height = "400"/> </p>
+<img src="staticFiles/Categories example.PNG" height = "400"/> </p>
+<img src="staticFiles/Signup.PNG" height = "400"/> </p>
+<img src="staticFiles/Signin.PNG" height = "400"/> </p>
+<img src="staticFiles/My products.PNG" height = "400"/> </p>
+<img src="staticFiles/Add product.PNG" height = "400"/> </p>
+<img src="staticFiles/Individual product view for seller.PNG" height = "400"/> </p>
+<img src="staticFiles/Bid Form.PNG" height = "400"/> </p>
+<img src="staticFiles/Bid completion notification.PNG" height = "400"/> </p>
+<img src="staticFiles/Individual product view for buyer.PNG" height = "400"/> </p>
+<img src="staticFiles/Update Form.PNG" height = "400"/> </p>
+<img src="staticFiles/Delete popup.PNG" height = "400"/> </p>
+<img src="staticFiles/Chat.PNG" height = "400"/> </p>
+<img src="staticFiles/Checkout page.PNG" height = "400"/> </p>
+<img src="staticFiles/Payment Gateway cards.PNG" height = "400"/> </p>
+<img src="staticFiles/Payment Gateway mobile banking.PNG" height = "400"/> </p>
+<img src="staticFiles/OTP page.PNG" height = "400"/> </p>
+<img src="staticFiles/Order confirmation.PNG" height = "400"/> </p>
+<img src="staticFiles/Search.PNG" height = "400"/> </p>
+
+
 
 
 ##  Authors
