@@ -11,7 +11,7 @@
 A common dilemma that every buyer faces is where to buy a specific product from. What do we do when we first think of buying something? We decide our budget and look for them in physical or online stores. Then comes endless hours of searching and surfing. What if we tell you that there is an easier alternative? Our web app <b>Kroy</b> opens a new door for buying stuff in an efficient way. Our goal is to change the way we buy things in general. Here, buyers will be able to post about the product they want by mentioning their budget and personal requirements. Someone who is willing to sell that very product will be able to bid within that budget. 
 Also, there will be a service section where you can ask for any service that you want and bidders will make sure that your needs are met.
 
-## Overview of the project
+## Video presentation for the project
 
 The detailed overview of the app and how to use it can be found in the following video. Click the thumbnail below to watch it on Youtube:
 
