@@ -61,34 +61,21 @@ Move into the storefront folder:
 cd storefront
 
 ```
-Install virtual environment :
+Install virtual environment and Django:
 
 ```
 
 pip install pipenv
 
-```
-
-Install Django :
-
-```
-
 pipenv install django
 
 ```
 
-Activate the virtual environment :
+Activate the virtual environment and run the server :
 
 ```
 
 pipenv shell
-
-```
-
-
-Then run the server :
-
-```
 
 pipenv run python manage.py runserver
 
