@@ -136,6 +136,6 @@ node app.js
 
 ##  Authors
 
-- <b>[Sabiha Tahsin Soha (2017331096)]((https://github.com/tahsinsoha))</b>
+- <b>[Sabiha Tahsin Soha (2017331096)](https://github.com/tahsinsoha)</b>
 
 - <b>[Aritra Mazumder (2017331073)](https://github.com/Aritra741)</b>
