@@ -66,7 +66,6 @@ Install virtual environment and Django:
 ```
 
 pip install pipenv
-
 pipenv install django
 
 ```
@@ -76,7 +75,6 @@ Activate the virtual environment and run the server :
 ```
 
 pipenv shell
-
 pipenv run python manage.py runserver
 
 ```
