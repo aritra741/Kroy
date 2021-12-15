@@ -15,7 +15,7 @@ Also, there will be a service section where you can ask for any service that you
 
 The detailed overview of the app and how to use it can be found in the following video. Click the thumbnail below to watch it on Youtube:
 
-[![Kroy Overview](https://i9.ytimg.com/vi_webp/_dFDs0SEENY/mqdefault.webp?v=61b8485a&sqp=CPiP4Y0G&rs=AOn4CLADa0uTVBfAUOJNGJP2LfQiTqCfFg)](https://youtu.be/_dFDs0SEENY)
+[![Kroy Overview](https://i.ytimg.com/vi_webp/_dFDs0SEENY/mqdefault.webp)](https://youtu.be/_dFDs0SEENY)
 
 ##  Features
 
